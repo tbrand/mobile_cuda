@@ -33,11 +33,11 @@
 //for nvml
 #include <nvml.h>
 
-#define DEBUG         0
+#define DEBUG         1
 #define DEBUG_ERROR   0
 #define PRINT_LOG     0
 #define DEBUG_RESTORE 0
-#define DEBUG_MIG 0
+#define DEBUG_MIG 1
 #define DEBUG_BACKUP 0
 
 #define DEBUG_SEMAPHORE 0
@@ -2248,10 +2248,7 @@ CUresult cuMemAlloc_v2(CUdeviceptr *dptr,size_t bytesize)
 
   if(res == CUDA_ERROR_OUT_OF_MEMORY){
 
-    //    int end = 0;
-    //    while(!end){
-
-      lock_other_proc();
+    //      lock_other_proc();
     
       size_t memSize;
       nvmlMemory_t mem_info;
@@ -2273,36 +2270,95 @@ CUresult cuMemAlloc_v2(CUdeviceptr *dptr,size_t bytesize)
 
 	freeMem = mem_info.free;
 
+#if DEBUG_MIG
 	printf("Free  memory region %lld\n",freeMem);
 	printf("Used  memory region %lld\n",mem_info.used);
 	printf("Total memory region %lld\n",mem_info.total);
+#endif
 
 	if(freeMem > memSize + bytesize + 64*1024*1024){
 
+#if DEBUG_MIG
 	  printf("memSize  : %lld\n",memSize);
 	  printf("byteSize : %lld\n",bytesize);
+#endif
 	
 	  mocu_start_migration(i);
 
 	  res = mocuMemAlloc_v2(dptr,bytesize);
 
-	  if(res != CUDA_SUCCESS){
+	  if(res == CUDA_SUCCESS)break;
+	  else{
 	    printf("Failed to allocate memory\n");
-	  }else{
-	    //	    end = 1;
-	    break;
+	    if(res != CUDA_ERROR_OUT_OF_MEMORY){
+	      printf("Mobile CUDA exit with ERROR CODE : %d\n",res);
+	      exit(1);
+	    }
 	  }
+
 	}else if(i == mocu.ndev - 1){
-	  printf("Failed to find enough region ... \n");
-	  sleep(1);
+
+#if DEBUG_MIG
+	  printf("Failed to find an enough region ... \n");
+	  printf("Backup Start ...\n");
+#endif
+
+	  mocu_backup();
+
+	  memSize = check_memory_amount_used();
+
+#if DEBUG_MIG
+	  printf("Amount Region of This Proc : %d\n",memSize);
+#endif
+
+	  int pause = 1;
+	  while(pause){
+	    int j;
+	    for(j = 0 ; j < mocu.ndev ; j ++){
+
+	      if(j == mocuID)continue;
+
+	      _res = nvmlDeviceGetMemoryInfo(mocu.nvml_dev[i],&mem_info);
+
+	      if(_res != NVML_SUCCESS){
+		printf("Failed to get memory information ... @device%d\n",j);
+	      }
+
+	      freeMem = mem_info.free;
+
+#if DEBUG_MIG
+	      printf("Free  memory region %lld\n",freeMem);
+	      printf("Used  memory region %lld\n",mem_info.used);
+	      printf("Total memory region %lld\n",mem_info.total);
+#endif
+
+	      if(freeMem > memSize + 64*1024*1024){
+		
+		lock_other_proc();
+		mocu_start_migration(j);
+		unlock_other_proc();
+		
+		res = mocuMemAlloc_v2(dptr,bytesize);
+
+		if(res == CUDA_SUCCESS){
+		  pause = 0;
+		  break;
+		}else if(res == CUDA_ERROR_OUT_OF_MEMORY){
+		  printf("Mobile CUDA exit with ERROR CODE : %d\n",res);
+		  exit(1);
+		}
+	      }
+	    }
+	    sleep(1);
+	  }
+
+
 	}
       }
 
-      unlock_other_proc();
+      //      unlock_other_proc();
 
     }
-
-  //  }
 
   if(res == CUDA_SUCCESS){
 
@@ -6283,15 +6339,10 @@ void mocu_migrate(int devID){
 
 void mocu_start_migration(int toDev){
 
-  //TEST
-  /*
-  int counter = 0;
-  while(++counter < 60){
-    printf("Now Migrating ... %d times\n",counter);
-    sleep(1);
-  }
-  */
+  lock_other_proc();
 
   mocu_backup();
   mocu_migrate(toDev);
+
+  unlock_other_proc();
 }

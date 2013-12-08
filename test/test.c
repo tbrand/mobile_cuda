@@ -14,7 +14,17 @@ int proc_counter;
 void fork_orig_proc(int);
 pid_t wait_proc();
 
+static float elapsed(struct timeval tv0,struct timeval tv1){
+	return (float)(tv1.tv_sec - tv0.tv_sec)
+		+ (float)(tv1.tv_usec - tv0.tv_usec)
+		* 0.000001f;
+}
+
 int main(){
+
+  struct timeval tv0,tv1;
+
+  gettimeofday(&tv0,NULL);
 
   proc_counter = 0;
 
@@ -47,6 +57,10 @@ int main(){
       }
     }
   }
+
+  gettimeofday(&tv1);
+
+  printf("Result time : %f[sec]\n",elapsed(tv0,tv1));
 
   return 0;
 }
