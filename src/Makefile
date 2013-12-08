@@ -1,3 +1,4 @@
+
 CC     = gcc
 CFLAGS = -g -O2 -I/usr/local/include -I../include
 LIB := -lnvidia-ml
