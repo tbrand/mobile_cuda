@@ -33,14 +33,14 @@
 //for nvml
 #include <nvml.h>
 
-#define DEBUG         1
+#define DEBUG         0
 #define DEBUG_ERROR   0
 #define PRINT_LOG     0
 #define DEBUG_RESTORE 0
 #define DEBUG_MIG 1
 #define DEBUG_BACKUP 0
 
-#define DEBUG_SEMAPHORE 0
+#define DEBUG_SEMAPHORE 1
 
 #define D_CONTEXT  0
 #define D_STREAM   0
@@ -249,14 +249,14 @@ static int initialized = 0;
 int sem_id;
 
 void _init_smph(){
-  sem_id = semget(KEY , 1 , IPC_CREAT | S_IRUSR | S_IWUSR | IPC_EXCL);
+  sem_id = semget(KEY,1,IPC_CREAT|S_IRUSR|S_IWUSR|IPC_EXCL);
   if(sem_id == -1){
 #if DEBUG_SEMAPHORE
     printf("Already Initialized ...\n");
 #endif
-    sem_id = semget(KEY , 1 , S_IRUSR | S_IWUSR);
+    sem_id = semget(KEY,1,S_IRUSR|S_IWUSR);
   }else{
-    int res = semctl(sem_id , 0 , SETVAL , 1);
+    int res = semctl(sem_id,0,SETVAL,1);
 #if DEBUG_SEMAPHORE
     printf("Initialized Semaphore \n");
     printf("Result Code : %d\n",res);
@@ -2248,12 +2248,12 @@ CUresult cuMemAlloc_v2(CUdeviceptr *dptr,size_t bytesize)
 
   if(res == CUDA_ERROR_OUT_OF_MEMORY){
 
-    mocu_backup();
-
     size_t memSize;
     nvmlMemory_t mem_info;
     nvmlReturn_t _res;
     unsigned long long freeMem;
+
+    mocu_backup();
 
     memSize = check_memory_amount_used();
     
@@ -2261,6 +2261,8 @@ CUresult cuMemAlloc_v2(CUdeviceptr *dptr,size_t bytesize)
     for(i = 0 ; i < mocu.ndev ; i ++){
 
       if(i == mocuID)continue;
+
+      lock_other_proc();
 
       _res = nvmlDeviceGetMemoryInfo(mocu.nvml_dev[i],&mem_info);
 
@@ -2271,12 +2273,16 @@ CUresult cuMemAlloc_v2(CUdeviceptr *dptr,size_t bytesize)
       freeMem = mem_info.free;
 
 #if DEBUG_MIG
-      printf("Free  memory region %lld\n",freeMem);
-      printf("Used  memory region %lld\n",mem_info.used);
-      printf("Total memory region %lld\n",mem_info.total);
+      printf("+--------------------------------------------+\n");
+      printf("|Device %2d                                   |\n",i);
+      printf("+============================================+\n");
+      printf("| Free  memory region %10lld[byte]       |\n",freeMem);
+      printf("| Used  memory region %10lld[byte]       |\n",mem_info.used);
+      printf("| Total memory region %10lld[byte]       |\n",mem_info.total);
+      printf("+--------------------------------------------+\n");
 #endif
 
-      if(freeMem > memSize + bytesize + 64*1024*1024){
+      if(freeMem > memSize + bytesize + 64*1024*1024/*64MB margin*/){
 
 #if DEBUG_MIG
 	printf("memSize  : %lld\n",memSize);
@@ -2287,17 +2293,23 @@ CUresult cuMemAlloc_v2(CUdeviceptr *dptr,size_t bytesize)
 
 	res = mocuMemAlloc_v2(dptr,bytesize);
 
-	if(res == CUDA_SUCCESS)break;
-	else{
+	if(res == CUDA_SUCCESS){
+	  i = mocu.ndev;
+	  //break;
+	}else{
 	  printf("Failed to allocate memory\n");
 	  if(res != CUDA_ERROR_OUT_OF_MEMORY){
 	    printf("Mobile CUDA exit with ERROR CODE : %d\n",res);
 	    exit(1);
 	  }
 	}
+	unlock_other_proc();
       }else if(i == mocu.ndev - 1){
 	i = -1;
+	unlock_other_proc();
 	sleep(1);
+      }else{
+	unlock_other_proc();
       }
     }
   }
@@ -6280,7 +6292,16 @@ void mocu_migrate(int devID){
 }
 
 void mocu_start_migration(int toDev){
-  lock_other_proc();
+  //  lock_other_proc();
+
+  //TEST
+  int i;
+  for(i = 0 ; i < 20 ; i ++){
+    printf(" ... %d\n",i);
+    sleep(1);
+  }
+
   mocu_migrate(toDev);
-  unlock_other_proc();
+
+  //  unlock_other_proc();
 }
