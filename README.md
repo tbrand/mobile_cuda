@@ -4,10 +4,10 @@ Author : Taichirou Suzuki @ Titech
 
 https://github.com/tbrand/mobile_cuda
 
-*Simple Memory Scheduler for GPU programs.
-*Migrate processes betweeen GPUs when process failed to allocate memory region caused by CUDA_ERROR_OUT_OF_MEMORY.
+* Simple Memory Scheduler for GPU programs.
+* Migrate processes betweeen GPUs when process failed to allocate memory region caused by CUDA_ERROR_OUT_OF_MEMORY.
 
-*To utilize this project:
+* To utilize this project:
 
 1. @src
 >make
