@@ -1,11 +1,11 @@
 
 CC     = gcc
-CFLAGS = -g -O2 -I/usr/local/include -I../include
-LIB := -lnvidia-ml
+CFLAGS = -g -O2 -I../include
+LIB    = -lnvidia-ml
 
 OBJS = libcuda.o
 
-SHARED  = libcuda.so.319.76
+SHARED  = libcuda.so.319.76 #depends on driver version
 SHARED1 = libcuda.so.1
 SHARED2 = libcuda.so
 

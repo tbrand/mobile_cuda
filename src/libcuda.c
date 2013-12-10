@@ -1,12 +1,13 @@
-/**
- *
- * MObile CUda > MOCU
- *
- * Author : Taichirou Suzuki
- *
- * using /usr/lib64/libcuda.so
- *
- **/
+/******************************************
+ *  Mobile CUDA                           *
+ *                                        *
+ *  Author : Taichirou Suzuki             *
+ *                                        *
+ *  using /usr/lib64/libcuda.so           *
+ *                                        *
+ *  https://github.com/tbrand/mobile_cuda *
+ *                                        *
+ ******************************************/
 
 #include <stdio.h>
 #include <dlfcn.h>
@@ -19,8 +20,8 @@
 #include <unistd.h>
 
 //include original header file
-#include "cuda.h"
-#include "mocu.h"
+#include <cuda.h>
+#include <mocu.h>
 
 //for shmem and semaphore
 #include <sys/types.h>
@@ -2262,6 +2263,7 @@ CUresult cuMemAlloc_v2(CUdeviceptr *dptr,size_t bytesize)
 
       if(i == mocuID)continue;
 
+      //Only one proc can search a free region on GPUs.
       lock_other_proc();
 
       _res = nvmlDeviceGetMemoryInfo(mocu.nvml_dev[i],&mem_info);
@@ -2303,14 +2305,14 @@ CUresult cuMemAlloc_v2(CUdeviceptr *dptr,size_t bytesize)
 	    exit(1);
 	  }
 	}
-	unlock_other_proc();
       }else if(i == mocu.ndev - 1){
 	i = -1;
-	unlock_other_proc();
 	sleep(1);
-      }else{
-	unlock_other_proc();
       }
+
+      unlock_other_proc();
+
+      if(i == -1)sleep(1);
     }
   }
 
