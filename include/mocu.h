@@ -297,7 +297,6 @@ extern void mocu_texref_restore(texref*,int);
 extern void mocu_migrate(int);
 extern void mocu_backup();
 extern void recreate_context(context*);
-extern void mocu_start_migration(int);
 
 /*
 

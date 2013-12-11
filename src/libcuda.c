@@ -1,13 +1,13 @@
-/******************************************
- *  Mobile CUDA                           *
- *                                        *
- *  Author : Taichirou Suzuki             *
- *                                        *
- *  using /usr/lib64/libcuda.so           *
- *                                        *
- *  https://github.com/tbrand/mobile_cuda *
- *                                        *
- ******************************************/
+/**********************************************
+ *  Mobile CUDA                               *
+ *                                            *
+ *  Author : Taichirou Suzuki                 *
+ *                                            *
+ *  using /usr/lib64/libcuda.so               *
+ *                                            *
+ *  https://github.com/tbrand/mobile_cuda.git *
+ *                                            *
+ **********************************************/
 
 #include <stdio.h>
 #include <dlfcn.h>
@@ -503,7 +503,6 @@ int create_context(CUcontext ctx){
     cp->mode = 1;
     cp->user = ctx;
 
-    //    CUdevice dev;
     unsigned int flags = 0;
 
     CUresult res;
@@ -561,7 +560,7 @@ void _init_mocu(){
   }
 
   _init_env();
-  //nvml
+
   nvmlReturn_t _res;
 
   _res = nvmlInit();
@@ -2290,8 +2289,8 @@ CUresult cuMemAlloc_v2(CUdeviceptr *dptr,size_t bytesize)
 	printf("memSize  : %lld\n",memSize);
 	printf("byteSize : %lld\n",bytesize);
 #endif
-	
-	mocu_start_migration(i);
+
+	mocu_migrate(i);
 
 	res = mocuMemAlloc_v2(dptr,bytesize);
 
@@ -4216,13 +4215,10 @@ CUresult cuFuncSetSharedMemConfig(CUfunction hfunc,CUsharedconfig config)
   return res;
 }
 
-int counter = 0;
-
 CUresult cuLaunchKernel(CUfunction f,unsigned int gridDimX,unsigned int gridDimY,unsigned int gridDimZ,unsigned int blockDimX,unsigned int blockDimY,unsigned int blockDimZ,unsigned int sharedMemBytes,CUstream hStream,void **kernelParams,void **extra)
 {
-  //#if DEBUG||D_STREAM||D_FUNCTION
-#if 0
-  printf("[MOCU] cuLaunchKernel is called.(%d times) : @device %d\n",counter,mocuID);
+#if DEBUG||D_STREAM||D_FUNCTION
+  printf("[MOCU] cuLaunchKernel is called. : @device %d\n",mocuID);
 #endif
 
   CUresult res;
@@ -4234,20 +4230,7 @@ CUresult cuLaunchKernel(CUfunction f,unsigned int gridDimX,unsigned int gridDimY
 
   res = mocuLaunchKernel(fp->f,gridDimX,gridDimY,gridDimZ,blockDimX,blockDimY,blockDimZ,sharedMemBytes,sp == NULL ? NULL : sp->s,kernelParams,extra);
 
-  if(res == CUDA_SUCCESS){
-
-    counter++;
-#if 0
-    if(counter%3000 == 0){
-      if(++mocuID >= mocu.ndev){
-	mocuID = 1;
-      }
-      mocu_start_migration(mocuID);
-    }
-#endif
-
-    return res;
-  }else{
+  if(res != CUDA_SUCCESS){
 #if DEBUG_ERROR
     //printf("[MOCU] Error(%d) @ cuLaunchKernel\n",res);
 #endif
@@ -6291,19 +6274,4 @@ void mocu_migrate(int devID){
   printf("| Migrate done.                                            |\n");
   printf("+----------------------------------------------------------+\n");
 #endif
-}
-
-void mocu_start_migration(int toDev){
-  //  lock_other_proc();
-
-  //TEST
-  int i;
-  for(i = 0 ; i < 20 ; i ++){
-    printf(" ... %d\n",i);
-    sleep(1);
-  }
-
-  mocu_migrate(toDev);
-
-  //  unlock_other_proc();
 }

@@ -18,4 +18,6 @@ https://github.com/tbrand/mobile_cuda
 3. @somewhere
 >export LD_LIBRARY_PATH=/path_to_mobile_cuda/lib64:${LD_LIBRARY_PATH}
 
+This project depends on CUDA driver version, see Makefile @src.
+
 Thanks.
