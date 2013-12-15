@@ -9,6 +9,8 @@
  *                                            *
  **********************************************/
 
+#define STAY_MODE 0
+
 #include <stdio.h>
 #include <dlfcn.h>
 #include <string.h>
@@ -38,10 +40,10 @@
 #define DEBUG_ERROR   0
 #define PRINT_LOG     0
 #define DEBUG_RESTORE 0
-#define DEBUG_MIG 1
+#define DEBUG_MIG 0
 #define DEBUG_BACKUP 0
 
-#define DEBUG_SEMAPHORE 1
+#define DEBUG_SEMAPHORE 0
 
 #define D_CONTEXT  0
 #define D_STREAM   0
@@ -245,6 +247,7 @@ CUresult (*mocuLinkDestroy)(CUlinkState );
 #endif
 
 MOCU mocu;
+
 static int initialized = 0;
 
 int sem_id;
@@ -745,10 +748,12 @@ module* get_module_correspond_to_hmod(context* cp,CUmodule hmod,int _flag){
 
 size_t check_memory_amount_used(){
 
+#if DEBUG_MIG
   printf("\n");
   printf("+--------------------------+\n");
   printf("|Amount Used of Memory     |\n");
   printf("+==========================+\n");;
+#endif
 
   context* cp;
   region* r;
@@ -763,8 +768,10 @@ size_t check_memory_amount_used(){
 
     while(r->next != NULL){
       
+#if DEBUG_MIG
       printf("|Region %3d  %10ld[KB]|\n",++counter,r->size >> 10);
       printf("+--------------------------+\n");
+#endif
       
       _size += r->size;
 
@@ -774,8 +781,10 @@ size_t check_memory_amount_used(){
     cp = cp->next;
   }
 
+#if DEBUG_MIG
   printf("|Total :     %10ld[KB]|\n",_size >> 10);
   printf("+--------------------------+\n");
+#endif
 
   return _size;
 }
@@ -2262,7 +2271,6 @@ CUresult cuMemAlloc_v2(CUdeviceptr *dptr,size_t bytesize)
 
       if(i == mocuID)continue;
 
-      //Only one proc can search a free region on GPUs.
       lock_other_proc();
 
       _res = nvmlDeviceGetMemoryInfo(mocu.nvml_dev[i],&mem_info);
@@ -2296,7 +2304,6 @@ CUresult cuMemAlloc_v2(CUdeviceptr *dptr,size_t bytesize)
 
 	if(res == CUDA_SUCCESS){
 	  i = mocu.ndev;
-	  //break;
 	}else{
 	  printf("Failed to allocate memory\n");
 	  if(res != CUDA_ERROR_OUT_OF_MEMORY){
@@ -2305,8 +2312,16 @@ CUresult cuMemAlloc_v2(CUdeviceptr *dptr,size_t bytesize)
 	  }
 	}
       }else if(i == mocu.ndev - 1){
+#if STAY_MODE
 	i = -1;
-	sleep(1);
+#else
+	printf("+------****Warning****------+\n");
+	printf("| There is no enough region |\n");
+	printf("|   This Process will exit  |\n");
+	printf("+---------------------------+\n");
+	exit(-2);
+#endif
+
       }
 
       unlock_other_proc();
@@ -6181,36 +6196,12 @@ void mocu_backup(){
     mocu_event_update(cp);
     mocu_device_backup(cp);
 
-    /*
-    CUcontext _ctx;
-    CUdevice _dev;
-
-    res = mocuDeviceGet(&_dev,0);
-    res = mocuCtxCreate_v2(&_ctx,0,_dev);
-    
-    res = mocuCtxSetCurrent(_ctx);
-    printf("context set current test : %d\n",res);
-
-    res = mocuModuleGetFunction(&cp->m0->next->f0->next->f,cp->m0->next->m,cp->m0->next->f0->next->name);
-    printf("Get Function test : %d\n",res);
-    printf("                  : %p\n",cp->m0->next->f0->next->f);
-    */
-
     res = mocuCtxDestroy_v2(cp->ctx);
 
     if(res != CUDA_SUCCESS){
       printf("|  [MOCU] Failed...(ERROR CODE : %d)\n",res);
       exit(1);
     }
-
-    /*
-    res = mocuCtxSetCurrent(_ctx);
-    printf("context set current test : %d\n",res);
-
-    res = mocuModuleGetFunction(&cp->m0->next->f0->next->f,cp->m0->next->m,cp->m0->next->f0->next->name);
-    printf("Get Function test : %d\n",res);
-    printf("                  : %p\n",cp->m0->next->f0->next->f);
-    */
 
     cp = cp->next;
 
