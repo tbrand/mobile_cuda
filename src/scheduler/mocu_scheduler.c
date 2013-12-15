@@ -20,7 +20,8 @@ int can_sub_proc();
 
 int main(){
 
-  int counter = 0;
+  int launched_proc = 0;
+  int received_proc = 0;
 
   nvmlReturn_t res;
 
@@ -33,22 +34,38 @@ int main(){
 
   while(can_sub_proc()){
     fork_child_proc();
-    counter ++;
-    printf("Process %d launch.\n",counter);
+    launched_proc++;
+    printf("Process %d launch.\n",launched_proc);
     sleep(5);
   }
 
   printf("First Step End...\n");
 
-  while(counter++ < PROC_NUM){
+  while(launched_proc++ < PROC_NUM){
     pid_t res;
     int status;
+
     res = wait(&status);
-    printf("Process %d finished.\n",counter);
+
+    received_proc++;
+
+    printf("Process %d finished.\n",received_proc);
+
     if(can_sub_proc()){
       fork_child_proc();
     }
   }
+
+  printf("Second Step End...\n");
+
+  while(received_proc++ < PROC_NUM){
+    pid_t res;
+    int status;
+
+    res = wait(&status);
+    printf("Process %d finished.\n",received_proc);
+  }
+
 
   printf("Every processes completed!\n");
 
