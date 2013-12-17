@@ -28,7 +28,7 @@ int main(){
   int i;
   for(i = 0 ; i < PROC_NUM ; i ++){
     fork_child_proc();
-    sleep(1);
+    sleep(5);
   }
 
   wait_multi_proc();

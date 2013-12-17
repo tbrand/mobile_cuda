@@ -9,7 +9,22 @@
  *                                            *
  **********************************************/
 
-#define STAY_MODE 0
+#define MOCU_MODE 2
+
+/*-----------------------------------------------------------------------*
+ * There are 3 mode for mobile CUDA.                                     *
+ *                                                                       *
+ * MOCU_MODE == 0 : Mobile CUDA migrate processes                        *
+ *                  if the process failed to call cuMemAlloc_v2().       *
+ *                                                                       *
+ * MOCU_MODE == 1 : This mode is same as MOCU_MODE == 0,                 *
+ *                  the difference is that process stay (not terminated) *
+ *                  on GPU0 to wait end of other process.                *
+ *                                                                       *
+ * MOCU_MODE == 2 : Mobile CUDA migrate processes                        *
+ *                  if there is already process on the GPU.              *
+ *                                                                       *
+ *-----------------------------------------------------------------------*/
 
 #include <stdio.h>
 #include <dlfcn.h>
@@ -268,24 +283,24 @@ void _init_smph(){
   }
 }
 
-int mocu_get_now_running_proc_num(){
+int mocu_get_now_running_proc_num(int pos){
   int infoCount = PROC_NUM;
   nvmlReturn_t res;
   nvmlProcessInfo_t* infos;
 
   infos = (nvmlProcessInfo_t*)malloc(sizeof(nvmlProcessInfo_t)*infoCount);
 
-  res = nvmlDeviceGetComputeRunningProcesses(mocu.nvml_dev[0],&infoCount,infos);
+  res = nvmlDeviceGetComputeRunningProcesses(mocu.nvml_dev[pos],&infoCount,infos);
 
   if(res != NVML_SUCCESS){
-    printf("Failed to get compute running processes @ device0\n");
+    printf("Failed to get compute running processes @ device%d\n",pos);
   }
 
   return infoCount;
 }
 
 void _detach_smph(){
-  int proc_num = mocu_get_now_running_proc_num();
+  int proc_num = mocu_get_now_running_proc_num(0);
 
   if(proc_num == 1){
 #if DEBUG_SEMAPHORE
@@ -990,6 +1005,32 @@ __attribute__((constructor())) void __init_taichirou(){
 
   _init_mocu();
   _init_smph();
+
+#if MOCU_MODE == 2
+
+  printf("kita222222222222222222222222222222222222222222222222222\n");
+
+  if(mocu_get_now_running_proc_num(mocuID) > 0){
+    mocu_backup();
+    int i;
+    for(i = 0 ; i < mocu.ndev ; i ++){
+
+      if(i == mocuID)continue;
+
+      lock_other_proc();
+
+      printf("mocu_get_now_running_proc_num =============== %d @ %d\n",mocu_get_now_running_proc_num(i),i);
+
+      if(mocu_get_now_running_proc_num(i) == 0){
+	mocu_migrate(i);
+	i = mocu.ndev;
+      }
+
+      unlock_other_proc();
+    }
+
+  }
+#endif
 
   initialized = 1;
 }
@@ -2255,8 +2296,11 @@ CUresult cuMemAlloc_v2(CUdeviceptr *dptr,size_t bytesize)
 
   res = mocuMemAlloc_v2(dptr,bytesize);
 
-  if(res == CUDA_ERROR_OUT_OF_MEMORY){
+#if MOCU_MODE == 0 || MOCU_MODE == 1
 
+  printf("kitaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\n");
+
+  if(res == CUDA_ERROR_OUT_OF_MEMORY){
     size_t memSize;
     nvmlMemory_t mem_info;
     nvmlReturn_t _res;
@@ -2312,23 +2356,22 @@ CUresult cuMemAlloc_v2(CUdeviceptr *dptr,size_t bytesize)
 	  }
 	}
       }else if(i == mocu.ndev - 1){
-#if STAY_MODE
+#if MOCU_MODE == 1
 	i = -1;
-#else
+#elseif MOCU_MODE == 0
 	printf("+------****Warning****------+\n");
 	printf("| There is no enough region |\n");
 	printf("|   This Process will exit  |\n");
 	printf("+---------------------------+\n");
 	exit(-2);
 #endif
-
       }
-
       unlock_other_proc();
-
       if(i == -1)sleep(1);
     }
   }
+
+#endif
 
   if(res == CUDA_SUCCESS){
 
