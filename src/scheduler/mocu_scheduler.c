@@ -18,6 +18,12 @@ nvmlMemory_t mem;
 void fork_child_proc();
 int can_sub_proc();
 
+static float elapsed(struct timeval tv0,struct timeval tv1){
+	return (float)(tv1.tv_sec - tv0.tv_sec)
+		+ (float)(tv1.tv_usec - tv0.tv_usec)
+		* 0.000001f;
+}
+
 int main(){
 
   int launched_proc = 0;
@@ -31,6 +37,10 @@ int main(){
   for(i = 0 ; i < DEV_NUM ; i ++){
     res = nvmlDeviceGetHandleByIndex(i,&dev[i]);
   }
+
+  struct timeval tv0,tv1;
+
+  gettimeofday(&tv0);
 
   while(can_sub_proc()){
     fork_child_proc();
@@ -53,6 +63,7 @@ int main(){
 
     if(can_sub_proc()){
       fork_child_proc();
+      printf("Process %d launch.\n",launched_proc);
     }
   }
 
@@ -66,8 +77,11 @@ int main(){
     printf("Process %d finished.\n",received_proc);
   }
 
-
   printf("Every processes completed!\n");
+
+  gettimeofday(&tv1);
+
+  printf("Result time : %f[sec]\n",elapsed(tv0,tv1));
 
 }
 

@@ -13,7 +13,17 @@ int fin = 0;
 void fork_child_proc();
 void wait_multi_proc();
 
+static float elapsed(struct timeval tv0,struct timeval tv1){
+	return (float)(tv1.tv_sec - tv0.tv_sec)
+		+ (float)(tv1.tv_usec - tv0.tv_usec)
+		* 0.000001f;
+}
+
 int main(){
+
+  struct timeval tv0,tv1;
+
+  gettimeofday(&tv0);
   
   int i;
   for(i = 0 ; i < PROC_NUM ; i ++){
@@ -22,6 +32,11 @@ int main(){
   }
 
   wait_multi_proc();
+
+  gettimeofday(&tv1);
+
+  printf("Result time : %f[sec]\n",elapsed(tv0,tv1));
+
 }
 
 void fork_child_proc(){
@@ -43,11 +58,5 @@ void wait_multi_proc(){
     int status = 0;
 
     pid = wait(&status);
-
-    printf("-----------------------\n");
-    printf(">From Parent\n");
-    printf(" Child  : %d\n",pid);
-    printf(" Status : %d\n",status);
-    printf("-----------------------\n");
   }
 }
