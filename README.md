@@ -19,7 +19,9 @@ https://github.com/tbrand/mobile_cuda.git
 
 3. @somewhere
 >export LD_LIBRARY_PATH=/path_to_mobile_cuda/lib64:${LD_LIBRARY_PATH}
+
 or you can use script like this
+
 >source env.sh
 
 This project depends on CUDA driver version, see Makefile @src.
