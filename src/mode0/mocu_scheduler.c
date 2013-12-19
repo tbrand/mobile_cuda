@@ -6,9 +6,11 @@
 
 #define PROC_NUM 20
 #define DEV_NUM 4
-#define PATH_TO_PROG "../../app/0_Simple/matrixMul/matrixMul"
+#define PATH_TO_PROG   "../../app/0_Simple/matrixMul/matrixMul"
+#define PATH_TO_PROG2  "../../app/orig/sample"
+#define PATH_TO_PROG3  "../../app/0_Simple/matrixMulSmall/matrixMulSmall"
 
-#define MATRIX_MEMORY 2123//[MB]
+#define MATRIX_MEMORY    2123//[MB]
 
 int status;
 
@@ -42,11 +44,11 @@ int main(){
 
   gettimeofday(&tv0);
 
-  while(can_sub_proc()){
+  while(can_sub_proc() && launched_proc < DEV_NUM*2){
     fork_child_proc();
     launched_proc++;
     printf("Process %d launch.\n",launched_proc);
-    sleep(5);
+    sleep(6);
   }
 
   printf("First Step End...\n");
@@ -103,13 +105,20 @@ int can_sub_proc(){
   return 0;
 }
 
+int switch_counter = 0;
+
 void fork_child_proc(){
+
+  switch_counter++;
 
   pid_t child = fork();
   
   if(child == 0){
     printf("This process is child.\n");
-    execl(PATH_TO_PROG,NULL);
+    if(switch_counter%2 == 0)
+      execl(PATH_TO_PROG,NULL);
+    else
+      execl(PATH_TO_PROG2,NULL);
     exit(0);
   }
 }

@@ -9,22 +9,16 @@
  *                                            *
  **********************************************/
 
-#define MOCU_MODE 2
+/*--------------------------------------------*
+ | Mobile CUDA has 2 modes                    |
+ +====+=======================================+
+ |MODE|Explanation                            |
+ +----+---------------------------------------+
+ |   0|Gathering all processes to device0.    |
+ |   1|Diffuce processes from the beginning.  |
+ +--------------------------------------------+*/
 
-/*-----------------------------------------------------------------------*
- * There are 3 mode for mobile CUDA.                                     *
- *                                                                       *
- * MOCU_MODE == 0 : Mobile CUDA migrate processes                        *
- *                  if the process failed to call cuMemAlloc_v2().       *
- *                                                                       *
- * MOCU_MODE == 1 : This mode is same as MOCU_MODE == 0,                 *
- *                  the difference is that process stay (not terminated) *
- *                  on GPU0 to wait end of other process.                *
- *                                                                       *
- * MOCU_MODE == 2 : Mobile CUDA migrate processes                        *
- *                  if there is already process on the GPU.              *
- *                                                                       *
- *-----------------------------------------------------------------------*/
+#define MODE 1
 
 #include <stdio.h>
 #include <dlfcn.h>
@@ -73,6 +67,8 @@
 
 #define KEY 10103
 #define PROC_NUM 64
+
+#define KERNEL_MIG_INTERVEL 5
 
 int mocuID = 0;
 
@@ -283,7 +279,8 @@ void _init_smph(){
   }
 }
 
-int mocu_get_now_running_proc_num(int pos){
+
+int _num_of_proc_at_device(int pos){
   int infoCount = PROC_NUM;
   nvmlReturn_t res;
   nvmlProcessInfo_t* infos;
@@ -299,8 +296,59 @@ int mocu_get_now_running_proc_num(int pos){
   return infoCount;
 }
 
+int _actual_num_of_proc_at_device0(){
+  int zero = _num_of_proc_at_device(0);
+  int i;
+  for(i = 1 ; i < mocu.ndev ; i ++){
+    zero -= _num_of_proc_at_device(i);
+  }
+
+  if(zero < 0)zero = 0;
+
+  return zero;
+}
+
+int _get_optimum_device_pos(){
+  int pos = 0;
+  int procs = _actual_num_of_proc_at_device0();
+  int i;
+  for(i = 1 ; i < mocu.ndev ; i ++){
+    if(procs > _num_of_proc_at_device(i))pos = i;
+  }
+  return pos;
+}
+
+int _is_optimum_pos(int pos){
+  int yes = 1;
+  int my_num;
+  int i;
+
+  if(pos == 0)
+    my_num = _actual_num_of_proc_at_device0();
+  else
+    my_num = _num_of_proc_at_device(pos);
+
+  if(my_num <= 1)return yes;
+
+  for(i = 0 ; i < mocu.ndev ; i ++){
+
+    if(i == pos)continue;
+    else{
+      int num;
+      if(i == 0){
+	num = _actual_num_of_proc_at_device0();
+      }else{
+	num = _num_of_proc_at_device(i);
+      }
+      if(num < my_num)yes = 0;
+    }
+  }
+
+  return yes;
+}
+
 void _detach_smph(){
-  int proc_num = mocu_get_now_running_proc_num(0);
+  int proc_num = _num_of_proc_at_device(0);
 
   if(proc_num == 1){
 #if DEBUG_SEMAPHORE
@@ -310,6 +358,7 @@ void _detach_smph(){
     semctl(sem_id,0,IPC_RMID);
   }
 }
+
 
 void lock_other_proc(){
   struct sembuf sops;
@@ -1006,30 +1055,19 @@ __attribute__((constructor())) void __init_taichirou(){
   _init_mocu();
   _init_smph();
 
-#if MOCU_MODE == 2
+#if MODE
 
-  printf("kita222222222222222222222222222222222222222222222222222\n");
+  //Process can enter here when MODE == 1.
 
-  if(mocu_get_now_running_proc_num(mocuID) > 0){
+  int mocu_pos = _get_optimum_device_pos();
+  
+  if(mocu_pos != mocuID){
     mocu_backup();
-    int i;
-    for(i = 0 ; i < mocu.ndev ; i ++){
-
-      if(i == mocuID)continue;
-
-      lock_other_proc();
-
-      printf("mocu_get_now_running_proc_num =============== %d @ %d\n",mocu_get_now_running_proc_num(i),i);
-
-      if(mocu_get_now_running_proc_num(i) == 0){
-	mocu_migrate(i);
-	i = mocu.ndev;
-      }
-
-      unlock_other_proc();
-    }
-
+    lock_other_proc();
+    mocu_migrate(mocu_pos);
+    unlock_other_proc();
   }
+
 #endif
 
   initialized = 1;
@@ -1226,7 +1264,6 @@ CUresult cuDeviceComputeCapability(int *major,int *minor,CUdevice dev)
 
   return res;
 }
-
 
 CUresult cuCtxCreate_v2(CUcontext *pctx,unsigned int flags,CUdevice dev)
 {
@@ -2296,11 +2333,8 @@ CUresult cuMemAlloc_v2(CUdeviceptr *dptr,size_t bytesize)
 
   res = mocuMemAlloc_v2(dptr,bytesize);
 
-#if MOCU_MODE == 0 || MOCU_MODE == 1
-
-  printf("kitaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\n");
-
   if(res == CUDA_ERROR_OUT_OF_MEMORY){
+
     size_t memSize;
     nvmlMemory_t mem_info;
     nvmlReturn_t _res;
@@ -2309,15 +2343,17 @@ CUresult cuMemAlloc_v2(CUdeviceptr *dptr,size_t bytesize)
     mocu_backup();
 
     memSize = check_memory_amount_used();
+
+    int optimum_pos = _get_optimum_device_pos();
     
     int i;
-    for(i = 0 ; i < mocu.ndev ; i ++){
+    for(i = optimum_pos ; i < mocu.ndev + optimum_pos ; i ++){      
 
-      if(i == mocuID)continue;
+      if(i%mocu.ndev == mocuID)continue;
 
       lock_other_proc();
 
-      _res = nvmlDeviceGetMemoryInfo(mocu.nvml_dev[i],&mem_info);
+      _res = nvmlDeviceGetMemoryInfo(mocu.nvml_dev[i%mocu.ndev],&mem_info);
 
       if(_res != NVML_SUCCESS){
 	printf("Failed to get memory information ... @device%d\n",i);
@@ -2327,7 +2363,7 @@ CUresult cuMemAlloc_v2(CUdeviceptr *dptr,size_t bytesize)
 
 #if DEBUG_MIG
       printf("+--------------------------------------------+\n");
-      printf("|Device %2d                                   |\n",i);
+      printf("|Device %2d                                   |\n",i%mocu.ndev);
       printf("+============================================+\n");
       printf("| Free  memory region %10lld[byte]       |\n",freeMem);
       printf("| Used  memory region %10lld[byte]       |\n",mem_info.used);
@@ -2335,19 +2371,14 @@ CUresult cuMemAlloc_v2(CUdeviceptr *dptr,size_t bytesize)
       printf("+--------------------------------------------+\n");
 #endif
 
-      if(freeMem > memSize + bytesize + 64*1024*1024/*64MB margin*/){
+      if(freeMem > memSize + bytesize + 64*1024*1024){
 
-#if DEBUG_MIG
-	printf("memSize  : %lld\n",memSize);
-	printf("byteSize : %lld\n",bytesize);
-#endif
-
-	mocu_migrate(i);
+	mocu_migrate(i%mocu.ndev);
 
 	res = mocuMemAlloc_v2(dptr,bytesize);
 
 	if(res == CUDA_SUCCESS){
-	  i = mocu.ndev;
+	  i = mocu.ndev + optimum_pos;
 	}else{
 	  printf("Failed to allocate memory\n");
 	  if(res != CUDA_ERROR_OUT_OF_MEMORY){
@@ -2355,24 +2386,20 @@ CUresult cuMemAlloc_v2(CUdeviceptr *dptr,size_t bytesize)
 	    exit(1);
 	  }
 	}
-      }else if(i == mocu.ndev - 1){
-#if MOCU_MODE == 1
-	i = -1;
-#elseif MOCU_MODE == 0
-	printf("+------****Warning****------+\n");
+      }else if(i == mocu.ndev + optimum_pos - 1){
+	printf("+---------------------------+\n");
+	printf("|       *  Warning  *       |\n");
+	printf("+---------------------------+\n");
 	printf("| There is no enough region |\n");
 	printf("|   This Process will exit  |\n");
 	printf("+---------------------------+\n");
-	exit(-2);
-#endif
+	unlock_other_proc();
+	exit(-1);
       }
       unlock_other_proc();
-      if(i == -1)sleep(1);
     }
   }
-
-#endif
-
+  
   if(res == CUDA_SUCCESS){
 
     cp = get_current_context();
@@ -2871,17 +2898,6 @@ CUresult cuMemcpyHtoD_v2(CUdeviceptr dstDevice,const void *srcHost,size_t ByteCo
   CUresult res;
 
   res = mocuMemcpyHtoD_v2(dstDevice,srcHost,ByteCount);
-
-  /*
-    if(!set){
-    test_ptr = srcHost;
-    set = 1;
-    }
-  */
-  
-  //  printf("INFO ::: CUdeviceptr %p\n",dstDevice);
-  //  printf("     ::: const void* %p\n",srcHost);
-  //  printf("     ::: size_t      %p\n",ByteCount);
 
   if(res == CUDA_SUCCESS){
     return res;
@@ -4272,6 +4288,8 @@ CUresult cuFuncSetSharedMemConfig(CUfunction hfunc,CUsharedconfig config)
 
   return res;
 }
+
+int kernel_mig_counter = 0;
 
 CUresult cuLaunchKernel(CUfunction f,unsigned int gridDimX,unsigned int gridDimY,unsigned int gridDimZ,unsigned int blockDimX,unsigned int blockDimY,unsigned int blockDimZ,unsigned int sharedMemBytes,CUstream hStream,void **kernelParams,void **extra)
 {
@@ -6309,3 +6327,59 @@ void mocu_migrate(int devID){
   printf("+----------------------------------------------------------+\n");
 #endif
 }
+
+/*
+void mocu_migrate_to_optimum_pos(){
+  size_t memSize;
+  nvmlMemory_t mem_info;
+  nvmlReturn_t _res;
+  unsigned long long freeMem;
+
+  memSize = check_memory_amount_used();
+
+  int optimum_pos = _get_optimum_device_pos();
+    
+  int i;
+  for(i = optimum_pos ; i < mocu.ndev + optimum_pos ; i ++){      
+
+    if(i%mocu.ndev == mocuID)continue;
+
+    lock_other_proc();
+
+    _res = nvmlDeviceGetMemoryInfo(mocu.nvml_dev[i%mocu.ndev],&mem_info);
+
+    if(_res != NVML_SUCCESS){
+      printf("Failed to get memory information ... @device%d\n",i);
+    }
+
+    freeMem = mem_info.free;
+
+#if DEBUG_MIG
+    printf("+--------------------------------------------+\n");
+    printf("|Device %2d                                   |\n",i%mocu.ndev);
+    printf("+============================================+\n");
+    printf("| Free  memory region %10lld[byte]       |\n",freeMem);
+    printf("| Used  memory region %10lld[byte]       |\n",mem_info.used);
+    printf("| Total memory region %10lld[byte]       |\n",mem_info.total);
+    printf("+--------------------------------------------+\n");
+#endif
+
+    if(freeMem > memSize + 64*1024*1024){
+
+      mocu_backup();
+
+      mocu_migrate(i%mocu.ndev);
+
+
+    }else if(i == mocu.ndev + optimum_pos - 1){
+      printf("+---------------------------+\n");
+      printf("|       *  Warning  *       |\n");
+      printf("+---------------------------+\n");
+      printf("| There is no enough region |\n");
+      printf("|   This Process will exit  |\n");
+      printf("+---------------------------+\n");
+    }
+    unlock_other_proc();
+  }
+}
+*/

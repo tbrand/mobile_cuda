@@ -3,7 +3,8 @@
 #include <unistd.h>
 #include <sys/wait.h>
 
-#define PATH_TO_PROG "../app/0_Simple/matrixMul/matrixMul"
+#define PATH_TO_PROG  "../app/0_Simple/matrixMul/matrixMul"
+#define PATH_TO_PROG2 "../app/orig/sample"
 #define PROC_NUM 20
 #define DEV_NUM 4
 
@@ -24,7 +25,7 @@ int main(){
 
   struct timeval tv0,tv1;
 
-  gettimeofday(&tv0,NULL);
+  gettimeofday(&tv0);
 
   proc_counter = 0;
 
@@ -65,7 +66,12 @@ int main(){
   return 0;
 }
 
+int switch_counter = 0;
+
 void fork_orig_proc(int pos){
+
+  switch_counter++;
+  
   pids[pos] = fork();
   if(pids[pos] < 0){
     exit(-1);
@@ -82,7 +88,10 @@ void fork_orig_proc(int pos){
     else if(pos == 3)
       putenv("CUDA_VISIBLE_DEVICES=3");
 
-    execl(PATH_TO_PROG,NULL);//execute matrixMul.cu
+    if(switch_counter%2 == 0)
+      execl(PATH_TO_PROG,NULL);//execute matrixMul.cu
+    else
+      execl(PATH_TO_PROG2,NULL);//execute matrixMul.cu
 
     exit(-1);
   }

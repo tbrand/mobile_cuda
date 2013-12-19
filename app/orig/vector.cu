@@ -6,7 +6,10 @@
  **/
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <cuda_runtime.h>
+#include <unistd.h>
+#include <sys/wait.h>
 
 /**
    Simple Kernel.
@@ -21,17 +24,18 @@ __global__ void ___add(float* a,float* b,unsigned long size){
 }
 
 int main(void){
+  
   /**
      Define Vector Size.
    **/
-  unsigned long _hen = 20000;
+  unsigned long _hen = 15000;
   //  unsigned long _hen = 15000;
   unsigned long size = _hen * _hen;
   /**
      Number Of Launch Kernel.
    **/
-  int numOfLaunchKernel = 10000;
-  //  int numOfLaunchKernel = 1;
+  int numOfLaunchKernel = 1;
+  //int numOfLaunchKernel = 1;
 
   cudaSetDevice(0);
 
@@ -63,6 +67,10 @@ int main(void){
     h_b[i] = 1.0f;
   }
 
+  int ite = 10000;
+
+  for(int j = 0 ; j < ite ; j ++){
+
   cudaMemcpy(d_a,h_a,sizeof(float)*size,cudaMemcpyHostToDevice);
   cudaMemcpy(d_b,h_b,sizeof(float)*size,cudaMemcpyHostToDevice);
 
@@ -82,10 +90,13 @@ int main(void){
   //  cudaMemcpy(h_c,d_c,sizeof(float)*size,cudaMemcpyDeviceToHost);
   cudaMemcpy(h_a,d_a,sizeof(float)*size,cudaMemcpyDeviceToHost);
 
+  }
+
   int pass = 1;
   for(int i = 0 ; i < size ; i ++){
     //    if(h_c[i] != numOfLaunchKernel){
-    if(h_a[i] != numOfLaunchKernel){
+    //    if(h_a[i] != numOfLaunchKernel){
+    if(h_a[i] != ite){
       pass = 0;
     }
   }

@@ -296,7 +296,8 @@ int matrixMultiply(int argc, char **argv, int block_size, dim3 &dimsA, dim3 &dim
     printf(
         "Performance= %.2f GFlop/s, Time= %.3f msec, Size= %.0f Ops, WorkgroupSize= %u threads/block\n",
         gigaFlops,
-        msecPerMatrixMul,
+        //msecPerMatrixMul,
+	msecTotal,
         flopsPerMatrixMul,
         threads.x * threads.y);
 
@@ -352,12 +353,22 @@ int matrixMultiply(int argc, char **argv, int block_size, dim3 &dimsA, dim3 &dim
     }
 }
 
+static float elapsed(struct timeval tv0,struct timeval tv1){
+	return (float)(tv1.tv_sec - tv0.tv_sec)
+		+ (float)(tv1.tv_usec - tv0.tv_usec)
+		* 0.000001f;
+}
 
 /**
  * Program main
  */
 int main(int argc, char **argv)
 {
+
+  struct timeval tv0,tv1;
+
+  gettimeofday(&tv0,NULL);
+  
     printf("[Matrix Multiply Using CUDA] - Starting...\n");
 
     if (checkCmdLineFlag(argc, (const char **)argv, "help") ||
@@ -370,6 +381,7 @@ int main(int argc, char **argv)
 
         exit(EXIT_SUCCESS);
     }
+
 
     // By default, we use device 0, otherwise we override the device ID based on what is provided at the command line
     int devID = 0;
@@ -451,6 +463,10 @@ int main(int argc, char **argv)
     printf("MatrixA(%d,%d), MatrixB(%d,%d)\n", dimsA.x, dimsA.y, dimsB.x, dimsB.y);
 
     int matrix_result = matrixMultiply(argc, argv, block_size, dimsA, dimsB);
+
+    gettimeofday(&tv1,NULL);
+
+    printf("My RESULT : %f\n",elapsed(tv0,tv1));
 
     exit(matrix_result);
 }
