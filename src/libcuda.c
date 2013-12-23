@@ -17,7 +17,7 @@
  |   1|Diffuce processes from the beginning.  |
  +--------------------------------------------+*/
 
-#define MODE 1
+#define MODE 0
 
 #include <stdio.h>
 #include <dlfcn.h>

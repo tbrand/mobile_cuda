@@ -78,7 +78,7 @@ int main(void){
     h_b[i] = 1.0f;
   }
 
-  int ite = 100;
+  int ite = 250;
 
   for(int j = 0 ; j < ite ; j ++){
 
