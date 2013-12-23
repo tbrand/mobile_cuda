@@ -7,9 +7,8 @@
  *                                            *
  *  https://github.com/tbrand/mobile_cuda.git *
  *                                            *
- **********************************************/
-
-/*--------------------------------------------*
+ **********************************************
+ +--------------------------------------------+
  | Mobile CUDA has 2 modes                    |
  +====+=======================================+
  |MODE|Explanation                            |
@@ -2340,14 +2339,14 @@ CUresult cuMemAlloc_v2(CUdeviceptr *dptr,size_t bytesize)
     nvmlReturn_t _res;
     unsigned long long freeMem;
 
-    mocu_backup();
-
     memSize = check_memory_amount_used();
 
+    mocu_backup();
+
     int optimum_pos = _get_optimum_device_pos();
-    
+
     int i;
-    for(i = optimum_pos ; i < mocu.ndev + optimum_pos ; i ++){      
+    for(i = optimum_pos ; i < mocu.ndev + optimum_pos ; i ++){
 
       if(i%mocu.ndev == mocuID)continue;
 

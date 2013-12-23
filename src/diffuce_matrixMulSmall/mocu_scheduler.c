@@ -6,9 +6,7 @@
 
 #define PROC_NUM 20
 #define DEV_NUM 4
-#define PATH_TO_PROG "../../app/0_Simple/matrixMul/matrixMul"
-
-#define MATRIX_MEMORY 2123//[MB]
+#define PATH_TO_PROG  "../../app/0_Simple/matrixMulSmall/matrixMulSmall"
 
 int status;
 
@@ -16,6 +14,7 @@ nvmlDevice_t dev[DEV_NUM];
 nvmlMemory_t mem;
 
 void fork_child_proc();
+int can_sub_proc();
 
 static float elapsed(struct timeval tv0,struct timeval tv1){
 	return (float)(tv1.tv_sec - tv0.tv_sec)
@@ -41,11 +40,11 @@ int main(){
 
   gettimeofday(&tv0);
 
-  for(i = 0 ; i < DEV_NUM ; i ++){
+  while(can_sub_proc() && launched_proc < DEV_NUM*2){
     fork_child_proc();
     launched_proc++;
     printf("Process %d launch.\n",launched_proc);
-    sleep(5);
+    sleep(2);
   }
 
   printf("First Step End...\n");
@@ -60,8 +59,10 @@ int main(){
 
     printf("Process %d finished.\n",received_proc);
 
-    fork_child_proc();
-    printf("Process %d launch.\n",launched_proc);
+    if(can_sub_proc()){
+      fork_child_proc();
+      printf("Process %d launch.\n",launched_proc);
+    }
   }
 
   printf("Second Step End...\n");
@@ -80,6 +81,10 @@ int main(){
 
   printf("Result time : %f[sec]\n",elapsed(tv0,tv1));
 
+}
+
+int can_sub_proc(){
+  return 1;
 }
 
 void fork_child_proc(){

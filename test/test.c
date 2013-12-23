@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <sys/wait.h>
+#include <sys/time.h>
 
 #define PATH_TO_PROG  "../app/0_Simple/matrixMul/matrixMul"
 #define PATH_TO_PROG2 "../app/orig/sample"
@@ -12,8 +13,17 @@ pid_t pids[DEV_NUM];
 int status;
 int proc_counter;
 
+typedef struct my_pid_time{
+  pid_t my_pid;
+  struct timeval start;
+  struct timeval end;
+  int pos;
+} __pid;
+
 void fork_orig_proc(int);
 pid_t wait_proc();
+
+__pid DATA[PROC_NUM];
 
 static float elapsed(struct timeval tv0,struct timeval tv1){
 	return (float)(tv1.tv_sec - tv0.tv_sec)
@@ -23,9 +33,11 @@ static float elapsed(struct timeval tv0,struct timeval tv1){
 
 int main(){
 
+  srand(110);
+
   struct timeval tv0,tv1;
 
-  gettimeofday(&tv0);
+  gettimeofday(&tv0,NULL);
 
   proc_counter = 0;
 
@@ -59,9 +71,26 @@ int main(){
     }
   }
 
-  gettimeofday(&tv1);
+  gettimeofday(&tv1,NULL);
 
   printf("Result time : %f[sec]\n",elapsed(tv0,tv1));
+
+  int k;
+
+  unsigned long long base = DATA[0].start.tv_sec;
+  
+  for(k = 0 ; k < PROC_NUM ; k ++){
+    DATA[k].start.tv_sec -= base;
+    DATA[k].end.tv_sec -= base;
+  }
+
+  for(k = 0 ; k < PROC_NUM ; k ++){
+    printf("PID == %lld\n",DATA[k].my_pid);
+    printf("pos   : %d\n",DATA[k].pos);
+    printf("Start : %d\n",DATA[k].start.tv_sec);
+    printf("End   : %d\n",DATA[k].end.tv_sec);
+    printf("Time  : %d\n",DATA[k].end.tv_sec - DATA[k].start.tv_sec);
+  }
 
   return 0;
 }
@@ -70,8 +99,8 @@ int switch_counter = 0;
 
 void fork_orig_proc(int pos){
 
-  switch_counter++;
-  
+  int random = rand()%100;
+
   pids[pos] = fork();
   if(pids[pos] < 0){
     exit(-1);
@@ -88,12 +117,24 @@ void fork_orig_proc(int pos){
     else if(pos == 3)
       putenv("CUDA_VISIBLE_DEVICES=3");
 
-    if(switch_counter%2 == 0)
+    if(random < 50)
       execl(PATH_TO_PROG,NULL);//execute matrixMul.cu
     else
       execl(PATH_TO_PROG2,NULL);//execute matrixMul.cu
 
     exit(-1);
+  }else{
+    struct timeval start;
+    gettimeofday(&start,NULL);
+    int i;
+    for(i = 0 ; i < PROC_NUM ; i ++){
+      if(DATA[i].my_pid == 0){
+	DATA[i].my_pid = pids[pos];
+	DATA[i].start = start;
+	DATA[i].pos = pos;
+	i = PROC_NUM;
+      }
+    }
   }
 }
 
@@ -104,6 +145,16 @@ pid_t wait_proc(){
   if(r < 0){
     perror("waitpid");
     exit(-1);
+  }
+
+  struct timeval end;
+  gettimeofday(&end,NULL);
+
+  int j;
+  for(j = 0 ; j < PROC_NUM ; j ++){
+    if(DATA[j].my_pid == r){
+      DATA[j].end = end;
+    }
   }
 
   if(WIFEXITED(status)){

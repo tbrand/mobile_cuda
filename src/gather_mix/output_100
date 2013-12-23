@@ -1,0 +1,1466 @@
+Process 1 launch.
+This process is child.
+cudaHostAlloc : 0
+cudaHostAlloc : 0
+This Sample Application Uses 858[Mbyte] per vector.(Total : 1716[Mbyte])
+Process 2 launch.
+This process is child.
+[Matrix Multiply Using CUDA] - Starting...
+GPU Device 0: "Tesla K20c" with compute capability 3.5
+
+MatrixA(10240,10240), MatrixB(20480,10240)
+Process 3 launch.
+This process is child.
+[Matrix Multiply Using CUDA] - Starting...
+GPU Device 0: "Tesla K20c" with compute capability 3.5
+
+MatrixA(10240,10240), MatrixB(20480,10240)
+
++----------------------------------------------------------+
+|> BACKUP START                                            |
++==========================================================+
+|  start events update.                                    |
+|  Finish ...                                              |
++----------------------------------------------------------+
+|  backup for Device start.                                |
+|  [MOCU -- BACKUP] allocate     409600 KB.                |
+Process 4 launch.
+This process is child.
+[Matrix Multiply Using CUDA] - Starting...
+GPU Device 0: "Tesla K20c" with compute capability 3.5
+
+MatrixA(10240,10240), MatrixB(20480,10240)
+|  Finish ...                                              |
++----------------------------------------------------------+
+|  Finish ...                                              |
++----------------------------------------------------------+
+Computing result using CUDA Kernel...
+done
+
++----------------------------------------------------------+
+|> BACKUP START                                            |
++==========================================================+
+|  start events update.                                    |
+|  Finish ...                                              |
++----------------------------------------------------------+
+|  backup for Device start.                                |
+|  [MOCU -- BACKUP] allocate     409600 KB.                |
+Computing result using CUDA Kernel...
+done
+Process 5 launch.
+This process is child.
+[Matrix Multiply Using CUDA] - Starting...
+GPU Device 0: "Tesla K20c" with compute capability 3.5
+
+MatrixA(10240,10240), MatrixB(20480,10240)
+|  Finish ...                                              |
++----------------------------------------------------------+
+|  Finish ...                                              |
++----------------------------------------------------------+
+
++----------------------------------------------------------+
+|> BACKUP START                                            |
++==========================================================+
+|  start events update.                                    |
+|  Finish ...                                              |
++----------------------------------------------------------+
+|  backup for Device start.                                |
+|  [MOCU -- BACKUP] allocate     409600 KB.                |
+Computing result using CUDA Kernel...
+done
+Process 6 launch.
+This process is child.
+
++----------------------------------------------------------+
+|> BACKUP START                                            |
++==========================================================+
+|  start events update.                                    |
+|  Finish ...                                              |
++----------------------------------------------------------+
+|  backup for Device start.                                |
+|  Finish ...                                              |
++----------------------------------------------------------+
+|  Finish ...                                              |
++----------------------------------------------------------+
+|  Finish ...                                              |
++----------------------------------------------------------+
+|  Finish ...                                              |
++----------------------------------------------------------+
+cudaHostAlloc : 0
+cudaHostAlloc : 0
+This Sample Application Uses 858[Mbyte] per vector.(Total : 1716[Mbyte])
+Computing result using CUDA Kernel...
+done
+Process 7 launch.
+This process is child.
+
++----------------------------------------------------------+
+|> BACKUP START                                            |
++==========================================================+
+|  start events update.                                    |
+|  Finish ...                                              |
++----------------------------------------------------------+
+|  backup for Device start.                                |
+|  Finish ...                                              |
++----------------------------------------------------------+
+|  Finish ...                                              |
++----------------------------------------------------------+
+
++----------------------------------------------------------+
+|> BACKUP START                                            |
++==========================================================+
+|  start events update.                                    |
+|  Finish ...                                              |
++----------------------------------------------------------+
+|  backup for Device start.                                |
+|  [MOCU -- BACKUP] allocate     878906 KB.                |
+Process 8 launch.
+This process is child.
+[Matrix Multiply Using CUDA] - Starting...
+GPU Device 0: "Tesla K20c" with compute capability 3.5
+
+MatrixA(10240,10240), MatrixB(20480,10240)
+
++----------------------------------------------------------+
+|> BACKUP START                                            |
++==========================================================+
+|  start events update.                                    |
+|  Finish ...                                              |
++----------------------------------------------------------+
+|  backup for Device start.                                |
+|  Finish ...                                              |
++----------------------------------------------------------+
+|  Finish ...                                              |
++----------------------------------------------------------+
+
++----------------------------------------------------------+
+|> BACKUP START                                            |
++==========================================================+
+|  start events update.                                    |
+|  Finish ...                                              |
++----------------------------------------------------------+
+|  backup for Device start.                                |
+|  [MOCU -- BACKUP] allocate     409600 KB.                |
+|  Finish ...                                              |
++----------------------------------------------------------+
+|  Finish ...                                              |
++----------------------------------------------------------+
+Computing result using CUDA Kernel...
+done
+First Step End...
+|  Finish ...                                              |
++----------------------------------------------------------+
+|  Finish ...                                              |
++----------------------------------------------------------+
+cudaHostAlloc : 0
+cudaHostAlloc : 0
+This Sample Application Uses 858[Mbyte] per vector.(Total : 1716[Mbyte])
+Performance= 241.58 GFlop/s, Time= 88892.211 msec, Size= 4294967296000 Ops, WorkgroupSize= 1024 threads/block
+>Result TEST : PASS
+Application Closed...
+My RESULT : 138.053879
+Process 1 finished.
+Process 9 launch.
+This process is child.
+cudaHostAlloc : 0
+cudaHostAlloc : 0
+This Sample Application Uses 858[Mbyte] per vector.(Total : 1716[Mbyte])
+Performance= 243.04 GFlop/s, Time= 88358.758 msec, Size= 4294967296000 Ops, WorkgroupSize= 1024 threads/block
+Checking computed result for correctness: Result = PASS
+
+Note: For peak performance, please refer to the matrixMulCUBLAS example.
+My RESULT : 136.690536
+Process 2 finished.
+Process 10 launch.
+This process is child.
+[Matrix Multiply Using CUDA] - Starting...
+GPU Device 0: "Tesla K20c" with compute capability 3.5
+
+MatrixA(10240,10240), MatrixB(20480,10240)
+Performance= 242.64 GFlop/s, Time= 88504.820 msec, Size= 4294967296000 Ops, WorkgroupSize= 1024 threads/block
+Checking computed result for correctness: Result = PASS
+
+Note: For peak performance, please refer to the matrixMulCUBLAS example.
+My RESULT : 131.555679
+Process 3 finished.
+Process 11 launch.
+This process is child.
+[Matrix Multiply Using CUDA] - Starting...
+GPU Device 0: "Tesla K20c" with compute capability 3.5
+
+MatrixA(10240,10240), MatrixB(20480,10240)
+
++----------------------------------------------------------+
+|> BACKUP START                                            |
++==========================================================+
+|  start events update.                                    |
+|  Finish ...                                              |
++----------------------------------------------------------+
+|  backup for Device start.                                |
+|  Finish ...                                              |
++----------------------------------------------------------+
+|  Finish ...                                              |
++----------------------------------------------------------+
+
++----------------------------------------------------------+
+|> BACKUP START                                            |
++==========================================================+
+|  start events update.                                    |
+|  Finish ...                                              |
++----------------------------------------------------------+
+|  backup for Device start.                                |
+|  [MOCU -- BACKUP] allocate     409600 KB.                |
+Computing result using CUDA Kernel...
+done
+|  Finish ...                                              |
++----------------------------------------------------------+
+|  Finish ...                                              |
++----------------------------------------------------------+
+Checking computed result for correctness: Result = PASS
+
+Note: For peak performance, please refer to the matrixMulCUBLAS example.
+My RESULT : 125.072212
+Process 4 finished.
+Process 12 launch.
+This process is child.
+[Matrix Multiply Using CUDA] - Starting...
+GPU Device 0: "Tesla K20c" with compute capability 3.5
+
+MatrixA(10240,10240), MatrixB(20480,10240)
+
++----------------------------------------------------------+
+|> BACKUP START                                            |
++==========================================================+
+|  start events update.                                    |
+|  Finish ...                                              |
++----------------------------------------------------------+
+|  backup for Device st            | Fi                 +----------------------+| inish .                 -----------------+
+
++----------------------------------------------------------+
+|> BACKUP START            |
++===================================+
+|                 |  Finish ...                    |
++----------------+
+|  backup for Device start.         |  [MOCU -- BACKUP] alloca       Computing ing ...
+done
+>Result TEST : PASS
+Application Closed...
+My RESULT : 141.399994
+|  Finish ...                                              |
++----------------------------------------------------------+Proces 5 finisPr13au.
+This process is child.
+|  F..                         
++----------------------
+
++----------------------------------------------ACKUPART          |
++=============================|  start events update.                     |
+|  F                +--------------------------------|  backup for Dev       
+|  Finish ...                 |
++-------------------------Fin...              ------------------------+
+CompingCUA Kernel...
+aHolloccudaHostAlloc : 0
+This Sample Application Uses 858[Mbyte] per vector.(Total : 1716[Me])
+>Rest TE PAApplication Closed...
+My RESULT : 159.287537
+Process 6 finished.
+Process 14 launch.
+This process is child.
+[Matrix Multiply Using CUDA] - Starting...
+GPU Device 0: "Tesla K20c" with compute capability 3.5
+
+MatrixA(10240,10240), MatrixB(20480,10240)
+
++---------------------------------------------------------UP T                =================+
+|  stevents                 h                    |
++----------------------------------+
+|  bac                 |  Finish ...                    -----------------------+
+|  Finis                 +------------------------------------------++----------------------------------------------------|>                 ====================+
+|  stareve               |                      ---------------------+
+|backfort              K allte    4600 .in ...                    -------------------+
+| ..               -------------------------+
+Perfore= 668031 c, Size WrkgupSi1024thringmpd sultr recte:r pk perfornce,o the matrixulCU RES: 077474Process 7 finished.
+Process 15 launch.
+This process is child.
+[Matrix Multiply Using CUDA] - Starting...
+Computing result using CUDA Kernel...
+done
+Performance= 140.74 GFlop/s, Time= 152583.500 msec, Size= 4294967296000 Ogroize= 102reablevi: "TK20c"th cmMatrixA(10240,10240), MatrixB(20480,10240)
+
++--------------------------------------|> BACKUP START                 |+============================+
+|r                 |  Finish ...                  |
++--------------------------------bac foDevicstar             ||  Fih ..              +-----------------------+
+|  Finish ...                         +---------------------------------gsultsingUDrnel.done
+Checking computed result for correctness: Result = PASS
+
+Note: For peak performance, please refer to the matrixMulCUBLAS exampleESUL7.4849
+Process 8 finished.
+Process 16 launch.
+This process is child.
+[Matrix Multiply Using CUDA] - Starting...
+GPU Device 0: "Tesla K20c" with cMatrixA(10240,10240), MatrixB(20480,10240)
+
++----------------------------------------------------------+
+|> BACKUP START                                 |
+============================rtentse.         |
+|  Finsh .               +-----------------------------|  backup for Device start                inish ..                         -----------------inis..              |
++-------------------------------------------Computing result .
+done
+Performance= 238.13 GFlop/s, Time= 90179.297 msec, Size= 4294966000 s, Workg024 thds/bck>RetApplication CloseMy RLT :2443
+Process 9 finished.
+Process 17 launch.
+This process is child.
+[Matrix Multiply Using CUDA] - Startng..PTesla K0c" wthuteMatrixA(10240,10
+Computing result using CUDA Kerne
+done
+Checking computed result for correctness: Result = PASS
+
+Note: For peak performance, please refer to the matrixMulCUBLAS exampMy RESULT : 137.2430
+Process 10 fid.
+Process 18 launch.
+This process is child.
+cudaHostAlloc : 0
+cudaHostAlloc : 0
+This Sample Application Uses 858[Mbyte] per vector.(Total : 1716[Mbyte])
+>Result TEST : PASS
+Application Closed...
+My RESULT : 146.590775
+Process 11 finished.
+Process 19 launch.
+This process is child.
+
++----------------------------------------------------------+
+|> BACKUP START                                            |
++==========================================t evts te.      |
+|  Finish ...                  +---------------------------------rt                               +--------------------------------ini                 |
++---------------------------loc 0
+cudaHostAlloc : 0
+This Sample Application Uses 858[Mbyte] per vector.(Total : 1716[Mbyte])
+Performance= 243.70= 881150msec,SizegropSize= 4 thaded result for cor = P
+Note: For peak performance, the matrMulCS exaMy RESULT : 1446Process 12 finishProcess 20 launch.
+This process is child.
+[Matrix Multiply Using CUDA] - Starting...
+GPU Device 0: "Tesla K20c" withabity5
+
+MatrixA(10240,10240), MatrixB(2080,1)
+
++----------------------------------------------------|> BACKUP START                    +===========================================
+|   update.        |
+|  Finish ...                  +-------------------------+ bckuf               |                  -------------------+
+| Finsh..                   +---------------------+
+
++------------------------
+|> BACKUP START                 =====================+
+|art es upe                                 +----------------------
+|  backup                MOCU - BAKUPcate4  
+|  ish .                  |
++------------------|  Fiis.            |
++---------------------------------+
+Comping done
+Performance= 129.02 GFlop/s, Time= 166448.781 msec, Size= 4294967296000 Ops, Workgroze= 10theds6 GFlops, Time= msecSiz 42949600pres/bl
+Cheing comfcorree Resu = SNote: For peak pe thetrixCUBLS exMy RESULT : 217.5Process 13 finished.
+Process 21 launch.
+This process is child.
+[Matrix Multiply Using CUDA] - Starting...
+GPU Device 0: "Tesla K20c" with compute capability 3.5
+
+MatrixA(10240,10240), MatrixB(20480,10240)
+Checking computed result focorress: lt PA
+
+Note: For peak performance, please refer to the matrixMulCUBLAS example.
+
++------------------------------------------------------> ACK                +=================================|  start events updte             |
+ ish...           |
++--------------------------vicart.              Fi ...                |--------------------
+My RESULT : 209.57Process 14 finished.
+Process 22 launch.
+This process is child.
+[Matrix Multiply Using CUDA] - Starting...
+|  Finish ...                                              |-------------------------------------------------------------------+
+|> BACKUP START                          |+=======================================+                                                          ----------------------------  bakup r Device start.                     |
+|  [MOCU te    9600B.            |
+la " with coute capbility), MaixB(0480,140)
+|  Fin                         -----------------------|  Finish ...                                +-----------------------------------------
++----------------------------------------------------------+
+|> BACKUP START                     
++========================+
+|  start events update.                  |
+|Finish .                 |
++-----------------------------+
+|  bac sta.               |  Finish ...                    |
++-----------------------------------------puinesult using CUDdone
+|  Finish ...                                              |
++--------------------------------
++----------------------------------------------------------+
+|> BACKUP START                                 |+=====================|  start events update.                 |
+|  Finish ...                      --------------------kup for Device start.            |
+|  MOCU --ACKUP] allocate         |
+|  Finish ...                                     
++----------------------------|  Finish ...                                       +---------------------------------
+Computing result using CUDA Kernel...
+done
+Performance= 232.93 GFlop/s, Time= 92194.250 msec, Size= 4294967296000 Ops, WorkupSize= 1024 theads/kultor coects: Relt =Note: For peak performance, please refer to the matrixMulCle.
+RESUL 12613181Process 15 finished.
+Process 23 launch.
+This process is child.
+[Matrix Multiply Using CUDA] - Starting...
+GPU Device 0: "Tesla K20c" with compute capabili 3.5
+MatrixA(10240,10240), MatrixB(20480,10240)
+Performance= 128.89 GFlop/s, Time= 166609.87msecSize= 4296720024readlock
+Coutinl...
+done
+>Result TEST : PASS
+Application Closed...
+My RESULT : 137.561630
+Process 16 finished.
+Process 24 launch.
+This process is child.
+[Matrix Multiply Using CUDA] - Starting...
+GPU Device 0: "Tesla K20c" with compute capability 3.5
+
+MatrixA(10240,10240), MatrixB(20480,10240)
+Checking computed result for correce
+Note: For peak performance, please refer to the matrixMulCUBLAS examplMy RESULT : 201.6Process 17 finished.
+Process 25 launch.
+This process is child.
+[Matrix Multiply UingUDStComputing result using CUDA Kernel.one
+GPU Device 0: "Tesla K20c" with 3
+
+MatrixA(10240,ixB(20480,102Performance= 140.70 GFlopTie= 15.578 ec,ps, ooupSi= 10hre+--------------------------------------------------------- BACKUP STT             +====================+
+|  start evts uate          |
+|  Fin                 +-----------------------------------|  backup for Device start.        Finish ..                +--------------------------------------------                  +-----------------------------+
+Computing result usidone
+Checking computed result for correctness: Result = PASS
+
+Note: For peak performance, please refer to the matrixMulCUBLAS example.
+My RESULT : 201.691925
+Process 18 finisheProcess 26 launch.
+This process is child.
+
++----------------------------------------------------------+
+|> BACKUP START                                            |
++============================================= ev updt          |  Finish ...                      +----------------------------------  bap r Devist         Fish..             |
++-------------------------sh .                 |
++-----------------------
+cHost
+Thampleplican Us8.al : 716Mbyt>Resppln lod...
+My RESULT : 137.108841
+Process 19 finished.
+Process 27 launch.
+This process is child.
+
++----------------------------------------------------------+
+|> BACKUP START                                            |
++==========================================|  start events update.               |
+|  Finish ...                +------------------------------+
+|  e st              |  Finish ...                         |+----------------------------------+
+|  Fnis..                ----------------------+---------------------------+
+|> BACKUP START                        
++=============================+
+|  start events updat            |
+|  F                            |
++---------------------|  backup or ice s       |
+|  [MOCU -- BACKUP] alloc   |
+|  Finish ...                    |+------------------------------- ...              +----------------------------------oc :erfoan245.7Floms, Size= 4294967rkgroupe= 14 th/blhiampApplicatin U vect(Tota: 116[Mtsulforcorrss: ultNote: For peak performance, please r t te maMulCUBLASMy RESULT : 134.05Process 20 finished.Process 28 launch.
+This process is child.
+[Matrix Multiply Using CUDA] - Starting...
+GPU Device 0: "Tesla K20c" with compute capability 3.5
+
+MatrixA(10240,10240), MatrixB(20480,10240)
+
++----------------------------------------------------------+
+|> BACKUP START                                            |
++=======================|  start events up                                    |
++-------------------------------|  backup for Device start.                |
+|  Finis                  +-----------------------------+
+|                   +---------------------------------+
+
++----------------------------------------------------------+|> BACKUP START            |
++===================
+|  art enupd          Finish                   +--------------------------------| r csta.          |  [MOCU -- BACKUP  960.          
+|sh .                   |
++--------------------------+
+|  Finish ...                     +----------------------+
+Computing result using CUDAernel...
+done
+Performance= 231.83 GFlop/s, Time= 92632.430 msec, Si 429pS= 104thr/blk
+Chsultorrectne: Rlt 
+Note: For peak performance, please refer to the matCUBLA examplMyRESTProcess 21 finished.
+Process 29 launch.
+This process is child.
+[Matrix Multiply Using CUDA] - Starting..
+GPU Device 0: "Tesla K20c" w comp caix024040), rix20,+----------------------------------|> BACKUP START                               |
++====================== stentsdate          |
+|  Finish ..                |------------------or Devi stat.                ||  Fih ..                
+-------------------+  nish              |
++------------------------ng lt sing DA rnedone
+>Result TEST : PASS
+Application Closed...
+My RESProcess 22 finished.Process 30 launch.
+This process is child.
+
++----------------------------------------------------------+
+|> BACKUP START                                            |
++=========================================+
+|t es upda       |  Finish ...                      +---------------------------------------+
+|  baup f D                  |  Finish ...              --------------------+
+|  Finish ...                          +----------------------------------cuostAl: 0
+cudaHostAlloc : 0
+This Sample Application Uses 858[Mbyte] per vector.(Total :Performan= 12.03F.891 mec,i 4294967e= 1hreadsckerfoame=9102. mseSize=2pSiz 10threads/ck
+ forrecss: ult ASNote: For peak performance, please BL exam.
+My RESULT : 2904724Process 23 finished.
+Process 31 launch.
+This process is child.
+
++----------------------------------------------------------+
+|> BACKUP START                                            |
++=================================================|  start eventudat        |
+|  nish             
++------------------------------------+|  backup for Devit.                |  Finh ..         +-------------------------------------+
+ inis...            |
++---------------------------+
+
++------------------------------------------------------|> BACKUP START                             +=========================|  start update.           
+|  Finish ...                     +------------------------------+
+|  backup foDevstart          |
+|OC- 7890 KB.          Checking computed Res = PAS
+
+Note: For peak performance, please refer to the matrixMulCUBLAS example.
+My  : 207.9836Process 24 finished.
+Process 32 launch.
+This process is child.
+
++----------------------------------------------------------+
+|> BACKUP START                                           +====================================+
+|  start events update.                       ||                  +----------------------------------sta.                   |
+|  Finish                   +----------------------------------|  Finsh           |
++------------------------------------------
+
++-----------------------------------------------+CKUPT               |
+===================== events .             
+|  Finish ...                 -------------------+|  backup for Device start.          |  [MOCU -- BACKUP] alloca   80          |
+|  Fin                 ------------------Finsh ..             -----------------------------+cHcudaHostAlloc : 0
+This Sample Application Uses 858[Mbyte] per vector.(Mb])
+|  Finish ...                      |
+------------------+
+ Finsh .                  -----------------cudaHostAlloc : 0
+aHooc 0
+This Sampatioes58[y p ver.(>Rult T : PS
+Appl..
+My RESULT : 149298569
+Process 25 finished.
+Process 33 launch.
+This process is child.
+
++----------------------------------------------------------+
+|> BACKUP START                                            |
++====================================================|  start events up                 |  Finish...                -------------------------|  backup for Deve        ||  Finish ...                               |
++-------------------------------+                 +-----------------------+
++----------------------------------------------------------+
+|> BACKUP START                     +============================
+|  stpdat               |
+|  Finish ...                   +----------------------------------|  backup for Devi          |  [MOCU -- BACKUP] allocKB.               GFls, Tim 888.mse290ps, WorkgrupSizman 9.0 GFlp/s, i= 42672000 Os,orku
+Ckincompd relt fASS
+
+Note: For peak performance, please refer to the xamp. RESULT : 18.Process 26 finished.
+Process 34 launch.
+This process is child.
+[Matrix Multiply Using CUDA] - Starting...GPU Device 0: "Tes witmputcabity 3.0), txB(201024
++----------------------------------------------------------+
+|> BACKUP START                              |
++==========================
+|  start                 |  Finish ...                      +----------------------------------|  bacp foDevista        |  Finish ...                |
+-------------------------------+|  Finish                     |+-------------------------------
+Computi Keel
+done
+Performance= 135.54 GFlop/s, Time= 158443.578 msec, Size= 4294967296000 Ops, tea/bloc|  Fi..                 |
++--------------------Checg comut resorrnessultASS
+
+Note: For peak performance, please refer to heatrMulCBL|  Finish ...                  +--------------------------------------------+
+My RESUL: Process 27 finished.
+Process 35 launch.
+This process is child.
+cudaHostAlloc : 0
+cudaHostAlloc : 0
+This Sample Application Uses 858[Mbyte] per vector.(Total : 1716[Mbyte])
+
++----------------------------------------------------+
+| BUP ST              |
++===============================+|  at nts upe.          |
+|  Finish ...                 |
++-------------------------|  backup for Devit.               |  Finish ...                       +----------------------------------                 -------------------------
++-----------------------------------------+
+|> BACKUP START                 |
++==================|  start events up                  |  Finish              |
++--------------------------|  backup for Device start.               |
+[MOC BAC   78906         |Checking computed  ResultSS
+
+Note: For peak performance, please refer to the matrixMulCUB eamle
+My RESULT : 204.729
+Process 28 finished.
+Process 36 launch.
+This process is child.
+cudaHostAlloc : 0
+cudaHostAlloc : 0
+This Sample Application Uses 858[Mbyte] per vector.(Total : 1716[Mbyte])
+|  Finish ...                                          |
++------------------------|  ini...            |
++------------------------------------+cudaHostAcudaHostAlloc : 0
+This Sample Application Uses 858[Mbyte] per vector.(yt)
+Performance= 2192 GF Tim97.297 m, WkgrSize=24 treingmputed result fs: Rel= PASS
+Note: For peak performance, please refetrilCLAS ele.My REProcess 29 finished.
+Process 37 launch.
+This process is child.
+
++----------------------------------------------------------+
+|> BACKUP START                                            |
++=====================================================+
+|  s                  |  Finish ...                    |
+------------------|  backup for Devart               |  Finish ...                      +----------------------------------|  Finish ...              +-------------------------cudaHostAlloc : 0cudaHostAlloc : 0
+This Sample Appli] pe veor.(Total :176[Mby>ResTESTPAApplication Closed...
+My RESULT : 142.454865
+Process 30 finished.
+Process 38 launch.
+This process is child.
+
++-----------------------------------------------------+|> BACKUP ST                  ==================+
+|  start events update.            |
+|  Finish ...                  
++---------------------------------|  backp foice t.      
+| Fini...                    +----------------------------------|  Finish ...                      ------------------cudaHostAlloc : 0
+cudaHostAlloc : 0
+This Sample Application Uses 858[Mbyte] per vector.: 17byte])
+Performance= 243.01 GFlopseSize29497200 Op thrads/block
+Checuted ult coctnessNote: For peak perce,ase rfeto e rixAS example.
+My RE5201Process 31 finished.
+Process 39 launch.
+This process is child.
+
++----------------------------------------------------------+
+|> BACKUP START                                            |
++==========================================+
+|  start eventdate           |  Finish ...              +---------------------------------+
+|  backup for Device star               |
+.                 -----------------Finh ...                         --------------------
++--------------------------------+ART               +====================+
+|  start events update.           |
+|  Finish .                  +------------------------+|  backup for Device start.          |
+|  [MACKallocate     87  
+>ReultEST SS
+AatioClos
+My RESULT055Pros 32iished.Process 40 launch.
+This process is child.
+
++----------------------------------------------------------+
+|> BACKUP START                                         |
++===============================|  start events update.             |
+ Fsh .           |
++------------------------------|  backup for Devt.                |  Finish ...                     |+----------------------------------                  +----------------------------------cudaHAllo0
+cudaHostAlloc : 0
+This Sample Application Uses 858[Mbyte] per vector.(Total : 1716[Mbyte])|Fin                  +----------------------------------                  +----------------------------------cudaHostAlloc : 0cudaHostAlloc : 0
+This Sample Application Uses 858[Mbyte] per vector.(T :6[Mbyt
+>ResTESTApplication Closed...
+My RESULT : 227.263458
+Process 33 finished.
+Process 41 launch.
+This process is child.
+
++-------------------------------------------------------|> BACKUP START                    |
++==========================+
+|  start events              ||  Finish ...                  
++---------------------------|  backup forice st.           |  Finish ...                      +----------------------+
+|  Finish ...               
++--------------------------------->Result TEST : PA
++----------------------------------------------------------+
+|> BACKUP START                             
++================================+t entpde.         Application Closed...
+My RESULT : 228.420166
+|  Finish ...                                         +-----------------------|  backup for Devce start.         |  [MOCU -- BACKUP] allocate     87 |Pros 3nishe
+Process 42 launch.
+This process is child.
+[Matrix Multiply Using CUDA] - Starting...
+GPU Device 0: "Tesla K20c" with compute caMatrixA(10240,10240),tri04,1040)
++------------------------------------+
+|> BACKUP STA           |
++==========================|  start events update.             ||  Finish ..                 |
++---------------------------+
+|  baorictar          CU -BACK allote  4|
+esulT : S
+ApliciMy RESULT : 223.1Process 35 finished.
+Process 43 launch.
+This process is child.
+|  Finish ...                                              |
++---------------------------------------------|  Fin..                +-----------------------
+cudatAllo:Allo 0
+This Sample Application Uses 858[Mbyte] per vte])
+Computing result using CUDArneldone
+>Result TEST : PASS
+Application Closed...
+My RESULT : 210.217804
+Process 36 finished.
+Process 44 launch.
+This process is child.
+cudaHostAlloc : 0
+cudaHostAlloc : 0
+This Sample Application Uses 858[Mbyte] per vector.(Total : 1716[Mbyte])
+|  Finish ...                                              |
++------------------------------------------------------+
+|  Fiish.             |
+--------------------cudaHstAllo 0
+cudaHostAlloc : 0
+This Sample Application Uses 858[Mbyte] per vector.(Tota])>Result TEST : Application ClosedMy RESULT : 216.773178
+Process 37 finished.
+Process 45 launch.
+This process is child.
+
++----------------------------------------------------------+
+|> BACKUP START                                            |
++======================================================|  start events update.                      
+|  sh                  |-----------------  ckup Devistat.      |
+| inih ..            +-----------------------+
+..               ---------------------------cudHostAcudaHostAlloc : 0
+This Sample Application Uses 858[Mbyte] per vector.(Total : 1Mbyt)
+>RtApplication Closed...
+My RESULT : 216.395081
+Process 38 finished.
+Process 46 launch.
+This process is child.
+
++----------------------------------------------------------+
+|> BACKUP START                                            |
++==========================================================+
+|  sta                   |  Finish ...                      -----------------------+
+|  backup forvice sart      
+|  Finish ...                     +----------------------
+|  Finish ...                     
++----------------------------cudaHostAlloc : 0cudaHostAlloc : 0
+This Sample Application Uses 858[Mbyte] per vector.(Total : 1716[Mbyt)ance43. GFlop/s, T msSize4966000, W24 tdslo
+Cheg comdects: t =SS
+Note: For peak performance, please refer to thmatrixMulC e.885132
+Process 39 finished.
+Process 47 launch.
+This process is child.
+[Matrix Multiply Using CUDA] - Starting...
+GPU Device 0: "Tesla K20c" with compute capa
+
+MatrixA(10240,10240), MatrixB(20480,10240)
+
++----------------------------------------------------------+
+|> BACKUP START                                            |
++==================================+ steven              ||  Finish ...             +------------------------+acku                |loce   09600 KB.    
+>ult ST  PApliLT : 200.798
+ProcensheProcess 48 launch.
+This process is child.
+[Matrix Multiply Using CUDA] - Starting...
+GPU Device 0: "Tesla K20c" with compute capailit
+
+atMixB(2048,102
++---------------------------------------------------+
+|> BACKUP START                    |
++=================|  start events u                   ...             +----------------------------------|  backup for Device start.                  |
+|  Fni                  +------------------------------+
+| ...                |
++-------------------------------
++--------------------------------------------------|> BACKUP START                           
++===========================|  sta eveupdat.     |
+|  Finish ...                                |
++---------------------|  backup for                  MO- CK] ale   409|  Finish ...                       +-------------------------------------+
+|  Finish ..                  +------------------+  Fini ..                |
++---------------------------------------->Result TEST : PASS
+|  Finish ...                              
++-------------------------------+
+Appliion Csed...
+My RESLT41 finised.
+Pcess launch.
+Thi[Marix Multiply Using CUDA] ..
+Computisult sing CUDAKerting result using CUDA Kerndone
+GPU Device 0: "Tesla K20c" with compute capabi
+MatrixA(10240,10240), MatrixB(20480,10240)
+>Result TEST : PASS
+Application Closed...
+My RESULT : 250.015198
+Process 42 finished.
+Process 50 launch.
+This process is child.
+
++----------------------------------------------------------+
+|> BACKUP START                                            |
++==========================================================+
+|  start events update.                                    |
+|  Finish ...                                              |
++-------------------------kuor ev sta.     
+|  [MOC BAUPallo    
++----------------------------------------------------------+
+|> BACKUP START              +============================|  start events u                | .                 -----------------+
+|  backupor Dce        | Fii..           |
+-------------------+ih             |
++-----------------------
++--------------------------------------------------|> BACKUP START                    |
++================================|  evenu.            |Fin ...              |
+-----------------------+
+a              [MOte   878906 KB.    ...                 |
++---------------------|  Fh ..                 ------------------usinDA Ker..
+done|  Finish ...                                        ------------------|  Finish ...                      -------------------+
+cudaHostAlloc : 0
+cudaHostAlloc : 0
+This Sample Application Uses 858[Mbyte] per vector.(Tot: 16[M)
+>Result TES : S
+Application Clos..
+My RESULT : 213.990204
+Process 43 finished.
+Process 51 launch.
+This process is child.
+cudaHostAlloc : 0
+>Result TEST : PASS
+cudaHostAlloc : 0
+This Sample Application Uses 858[Mbyte] per vector.(To
+Application Close.
+My RESULT : 212.311508
+Process 44 finished.
+Process 52 launch.
+This process is child.
+cudaHostAlloc : 0
+cudaHostAlloc : 0
+This Sample Application Uses 858[Mbyte] per vector.(Total : 1716[Mbyte])
+Performance= 249.61 GFlop/s, Time= 86034.461 msec9696000s, WgroupSids/block
+Ceckinmpessult= PAS
+
+Note: For peak performance, please referBLAS epleMy RESULT29Process 45 finished.
+Process 53 launch.
+This process is child.
+
++----------------------------------------------------------+
+|> BACKUP START                                            |
++======================+
+ stavets ue.       
+| inis             |
++--------------------------vicert           h ..                 |-----------------------|  Finis                  +----------------------------------+---------------------------------------------------T                 ==================staeveupdte                 |  Fini                 
++------------------+backuor vi sta       |[MOC- BAP]         
+>Rult STosedMy RESULT : 216.752151
+Process 46 finished.
+Process 54 launch.
+This process is child.
+
++----------------------------------------------------------+
+|> BACKUP START                                            |
++======================================+
+|  start events uate.           ||  ish                |
++----------------------ckuDevie strt.   
+|  Finish ..                 |
++--------------------|  Finih ...                    
++------------------+|  Finish ...              +------------------------------------------ : 0cudaHostAlloc : 0
+This Sample Application Uses 858[Mbyte] per vect17[Mbe]
+|  Finish ...              +----------------------------------->ResuTES PS
+Application Closed...
+My RESULT : 215.955292
+Process 47 finished.
+Process 55 launch.
+This process is child.
+[Matrix Multiply Using CUDA] - Starting...
+GPU Device 0: "Tesla K20c" with compute capability 3.5
+
+MatrixA(10240,10240), MatrixB(20480,10240)
+
++----------------------------------------------------------+
+|> BACKUP START                       ======================
+|  stevendate      
+|  Finish ...                                   +----------------------+
+|  backup or D            
+| [M    600          
+cudaHostAlloc : 0
+cudaHostAlloc : 0
+This Sample Application Uses 858[Mbyte] per vector.(|  Finish ...                      ----------------------+
+|  Finish .                  +----------------------------------ornc129.3Flo, Timlg e.e
+Checking coult for corrtnesul
+Note: For peak performance, please refer to the matrixMulCUBLAS exampULT23.62
+Prss 48 launch.
+This proce
++----------------------------------------------------------+
+|> BACKUP START                            ============================+
+|  staeve update       |  Finish ...                +-----------------------+
+|  backup for Device start.              |
+|  Finis                 +------------------------------+
+Fi                 
++----------------------------------
++---------------------------------------------------|> BACKUP START                    +============================+
+|  strt evntsate.         |  Finish ...                  
++-------------------------+
+|  backup for Device sta              | [ca   7896         >Result TEST : PAApplication Closed...
+My RESULT : 195.321350
+Process 49 finished.
+Process 57 launch.
+This process is child.
+[Matrix Multiply Using CUDA] - Starting...
+GPU Device 0: "Tesla K20c" with compute capability 3.5
+
+MatrixA(10240,10240), MatrixB(20480,10240)
+Performance= 157.47 GFlop/s, Time= 136374.141 msec,ize= 42949672960roup= 4 thds/bck
++------------------------------------|> BACKUP START                 |
+=================|  start events up                  |  Finish ...                      ------------------+|  backup for De st.                |
+|  OCUACKalte    |Checking computed resu forrrtn
+Note: For peak performance, please refer to the matrixMulLA exe.
+MESU: 205.977005
+ssfin.
+This process is [Matrix Multiply Using CUDA] - Star|  Finish ...                                 |+----------------------|  Finish ...                      ------------------GPU Device 0: "Tempuapali3.
+
+MatrixA(10240,10240), MatrixB(201040)
+
++------------------------------------------------------ STA               |
++=========================================+
+|  start evendate.          |
+ Fin ...             |
++------------------------
+|  bckuor vice                                   ----------------------------------+                  -----------------                         |----------------
+|  Finis..                 +-----------------0
+cudaHostAlloc : This Sample Applicatises Mbyt per v16[Mbyte])
+
++----------------------------------------|> BACKUP START                    +=========================================== staevend             |
+|  Fi ..            +-------------------------|  backup for Device sta. |
+|  [MOCU -- BACKUP] allocate     4   Computing resunel.done
+|  Finish ...                                         |
++----------------------------------------|  Finish ...                    |+-----------------Computing result u Kel
+done
+>Result TEST : PASS
+Application Closed...
+My RESULT : 214.077744
+Process 51 finished.
+Process 59 launch.
+This process is child.
+cudaHostAlloc : 0
+>Result TEST : PASS
+cudaHostAlloc : 0
+This Sample Application Uses 858[Mbyte] per vector.(Total : 1716[Mbyte])
+Application Closed...
+My RESULT : 213.992126
+Process 52 finished.
+Process 60 launch.
+This process is child.
+[Matrix Multiply Using CUDA] - Starting...
+GPU Device 0: "Tesla K20c" with compute capability 3.5
+
+MatrixA(10240,10240), MatrixB(20480,10240)
+>Result TEST : PASS
+Application Closed...
+My RESULT : 143.828659
+Process 53 finished.
+Process 61 launch.
+This process is child.
+
++----------------------------------------------------------+
+|> BACKUP START                                            |
++==========================================+
+|  start events update.        |
+|  Finish ...                  |
+-----------------kur Dee t.        
+|  nh .              |
++--------------------
+Coing udone
+|  Finish ...                            ------cudaHostAlloc : 0
+cudaHostAlloc : 0This Sample Application Uses 858[Mbyte] per vectorTot6[Mbyte]Performancp/, T 884508c, ze290 Ops,kgupS=4 thekincomed rlt orreNote: For peak performa, pl ref t mMy RESULT : 154.03031
+Process 54 finished.
+Process 62 launch.
+This process is child.
+
++----------------------------------------------------------+
+|> BACKUP START                           |+================================+
+|  e.                |  Finish ...                     |-----------------------+
+|  backup               |  Finish ...                         |--------------------------+
+|  Fini                  -------------------
+cudaHostAlloc : 0
+cudaHostAlloc : 0
+This Sample Application Uses 858[Mbyte] per vectootal : 1716[Mbyt>Result TEST :SS
+Application Closed..My RESULT : 242.877975
+Process 55 finished.
+Process 63 launch.
+This process is child.
+
++----------------------------------------------------------+
+|> BACKUP START                              +==================================|  start events ue      ||  Finish ...                           |+-----------------+
+|  backup forctart    |
+|  Finish ...                       |+---------------------+
+|  Finish ...                      
++---------------------
++----------------------------------------------------------+
+|> BACKUP T               
++===============================| e.                 Fish.           --------------------------
+|  backue s               CU -- BACKUP] alo        |
+  ish .            |
+------------------
+| n                      |
+----------------+
+caHosll : 0cudaHostA : 0
+This Sample Applicator vto(Tal : 716ytPerformance 234 op, S42946296000 Ops24rea/bockult ES Applicationlose..
+My RESULT : 215.671814
+Process 56 finished.
+Process 64 launch.
+This process is child.
+[Matrix Multiply Using CUDA] - Starting...
+GPU Device 0: "Tesla K20c" with compute capability 3.5
+
+MatrixA(10240,10240), MatrixB(20480,10240)
+
++----------------------------------------------------------+
+|> BACKUP START                                     |+=========================|  start events u          |  Finis                 +-----------------------------------|  backup forevic              |
+|                  ------------------ ...              +--------------------------------
+>TESSS
+
++----------------------------------------------------------+
+|> BACKUP START                                       |=====================+
+|  start evs                      |
+ApplicatMy RESULT : 138.18290|  Finish ...                                |
++----------------------|  backup for Dev            |
+|  [MOCU -- BACKUP] al KB.             ishe
+Process 65 launch.
+This procescudaHostAlloc : 0
+cudaHostAlloc : 0
+This Sample Application Uses 858[Mbyte] per vector.(Total : 1716[Mbyte])
+ecking coted et = PASS
+Note: For peak performance, please refer to theatriCUBASle.
+My R : 13224
+Performance= 129.06 GFlop/s, Time= 166394.42967600 Ops,rkgrPros 58ishe
+Press6This process hi
+cudaHostAlloc : 0
+cudaHostAlloc : 0
+This Sample Application Uses 858[Mbyte] per vector.(Total : 1716[Mbyte]rma13689 lop/me=52949600OpsrkgroupSblChecg coputesul = PAS
+
+Note: For peak performance, plase  to theatriMy RESULT : 222.8895Process 59 finished.
+Process 67 launch.
+This process is child.
+
++----------------------------------------------------------+
+|> BACKUP START                                            |
++======================e.               .                 ---------------------------+
+|  bp                                    ------------------in .             ------------------ecg omed result fss Rslt =SS
+
+: r pr toerixMCUBLAS e0
+cstAll : 
+This S] pect.(To: 17bytProcess 60 finished.
+Process 68 launch.
+This process is child.
+
++----------------------------------------------------------+
+|> BACKUP START                                            |
++========================|  start events up                  |  Finish ...                       |
++-----------------------+
+|  bac Destar            Fis .           +----------------------------------|  Finish ...                       |
++-------------------------+cudaHostAlloc: 0
+cudaHostAllo 0
+This Sample Application Uses 858[Mbyte] per vector.(Tota 1Mbe .                -------------------+
+| nish               --------------------+puti ruKern..do
+>Result TEST : PASS
+Application Closed...
+My RESULT : 203.037247
+Process 61 finished.
+Process 69 launch.
+This process is child.
+[Matrix Multiply Using CUDA] - Starting...
+GPU Device 0: "Tesla K20c" with compute capability 3.5
+
+MatrixA(10240,10240), MatrixB(20480,10240)
+
++----------------------------------------------------------+
+|> BACKUP START                                            |
++========================+
+ staevent t         
+|  ish             |
+---------------------ackr Devi sta.       |
+  [CU -- BACK         |
+Fin..             |
++--------------------                  --------------------+
+mput result ge
+>ResulES: PAAppt: 202.684
+Press ich.Thpro is ld.
+[M -ating.GPU vi0: cabilit
+
+MaixA(40,xB(20480,10240)
+
+----------------|>T                 =================starvetsdate.        
+| inis.                 |
++----------------------evitart.         
+| MO- BUP] alocat  |  Fini...              +-------------------------------------+
+|  i              |
++-----------------------+mpu resusingdone
+>Result TEST : PASS
+Application Closed...
+My RESULT : 171.991425
+Process 63 finished.
+Process 71 launch.
+This process is child.
+
++----------------------------------------------------------+
+|> BACKUP START                                            |
++==========================================================+
+|  start events update.               
+| inis..               +---------------------+|  backup for Device               
+|                  +------------------------------|  Finish ...                     
++---------------------daHoloc : 0
+cudaHThis Sample Application Uses58[Myte716[Mt)
+Performanc95 Gs,e=880208mseps,orkoupS1024 eadng computed su forNote: For  perforthe matrixMuBLxame339ross4 fed.Process 72 launchThis process is child.
+[Matrix Mully  CUgGPU Device 0: "Tesla K20c" womte c3.5
+
+MatrixA(10240,10240)Matr048024
++------------------------------------------+
+|> BACKUP START              |
++=========================================+
+|a                  |  Finish ...                  |
++------------------|  backup for Devi           |
+ CU 4000 KB.      |
+|i                  ---------------------|  Finish ...                  ------------------Computing result uArne..
+done
+>Result TEST : PASS
+Application Closed...
+My RESULT : 212.573013
+Process 65 finished.
+Process 73 launch.
+This process is child.
+cudaHostAlloc : 0
+cudaHostAlloc : 0
+This Sample Application Uses 858[Mbyte] per vector.(Total : 1716[Mbyte])
+>Result TEST : PASS
+Application Closed...
+My RESULT : 213.131226
+Process 66 finished.
+Process 74 launch.This process is child.
+[Matrix MuUDA]tarin
+GPUevicempute capabilit3.
+MatrixA(10240,10240), MatrixB(20480,10240)
+>Result TEST : PASS
+Application Closed...
+My RESULT : 213.440933
+Process 67 finished.
+Process 75 launch.
+This process is child.
+[Matrix Multiply Using CUDA] - Starting...
+GPU Device 0: "Tesla K20c" with compute capability 3.5
+
+MatrA(10240,40
++----------------------------------------------------------+
+|> BACKUP START                         +===========================+
+|  ta                 ||  Finish ...                      +----------------------------------icrt.            |  Finish ...                       -----------------|  Finish ...                      +-----------------------------------T :S
+
++----------------------------------------------------------+
+|> BACKUP START                           |+=================================+
+|  start eve              |
+| ish              ------------------------+
+acku Devi          |
+ [MO- 00           Application Close..
+My RESULT : 212.034Process 68 finished.
+Process 76 launch.
+This process is child.
+[Matrix Multiply Using CUDA] - Starting...
+|  Finish ...                                            +------------------------------...              +------------------------------------------+GPU Device 0:esla K20cth utMatrixA(10240,10240), MatrixB(20480,10240)
+Computing result using CUDA Kerl...done
+
++----------------------------------------------------------+
+|> BACKUP START                                            |
++=====================+
+|  start events             |  Finish ...                        |
++---------------------+
+|  backup forta               h .               +---------------------------+
+|  Fi...              ---------------------------+
++-----------------------------------------> BUP T          +=======================  artentupd                                    
+----------------|  backup for Device st.            --UP]llote 0960 K   ||  Finish ...                  +-----------------------------------+
+|  Finish ..             +----------------------------------------+Compuing sultusiDArnel...
+done
+Computing result using CUDA Kernel...
+done
+>Result TEST : PASS
+Application Closed...
+My RESULT : 135.795486
+Process 69 finished.
+Process 77 launch.
+This process is child.
+
++----------------------------------------------------------+
+|> BACKUP START                                            |
++==========================================================+
+|  start events update.                              |                 |
++----------------------------------------------------------+
+|  backus.               |  Finsh                     +-----------------------------------------+
+|  Finish ...                          |-------------------------+
+c
+cudaHostAlloc : 0
+This Sample Application Uses 858[Mbyter vector.(Totce290 GF/s, = 1671600Ops,rkgrSize02Checkincputedultor= 
+
+Note: For peak performance, please refer to the matrixMulCUBLAS example.
+My RESULT : 70ishe
+Process 78 launch.
+This process is child.
+[Matrix Multiply Using CUDA] - Starting...
+GPU Device 0"Tesla K20c" with compute capabili 3MatrixA(10240,10240), MatrixB(20480,10240)
+
++-------------------------------------------------------+
+|> BACKUP START                         |
++================================+
+|  start eventdate.            |  Finish .                |
++-------------------------------+
+|  backup for Device start.                                |                  ---------------------
+|  Finish ...                               |
++------------------------------------------------------ ug DA Ke...done
+P/s, Time= 88070.883 msec, Se= 49672 10hrealock
+Perfolop Time= 141010.22979600 O, WkgropSckChecking comp rorrectnRes =S
+
+Note: For peak performance, please refer to the matrixMulCBLASmplMy RESULroces 71 finished.lau.
+Ths pes is chil
+
++----------------------------------------------------------+
+|> BACKUP START                   
++=====================|  stat ts ue.                     |  Finish ...                                              |
++------------------------------------+
+|  bacicstar             |
+|  Finish ...                    |
++-------------------+|  Finis .                  -------------------------------+
+cudaHostAlloc : 0
+cudaHostAlloc : 0
+This Sample Application Uses 858[Mbytal 16[Mbyte])eckited result for corNote: r peak performance, p re te r RLT 3.1141
+Proce launch.
+This proctrMullyUsUDA] - Starting...
+GPU Device 0: "Tesla K0c"5
+
+MatrixA(10240,ix(201024
++----------------------+B                 |==================|  st events upda                               |
+|                   ----------------- for De stat.       nish .                        |
++--------------------------------------------+
+ Fsh ..         |
++----------------------------+
+
++----------------------------------------------------------+
+|> BACKUP START                      +===================
+|  start events update.                                    |
+|  Finish ...                            +----------------------------------------+
+|  backuptart.                      
+|  [ -- 40900            |  Finsh ...                                      |
++------------------------+
+|  Finish                  -----------------------------------foce= 16 Gs, Time m, S= 42949672960 1024 treadock
+Coresult using CUDA ne
+>Result TEST : caClos
+My RT :8.9 7finid.
+Press81 lchd.
+cudaHostAllo
+cus: 0his Sample ApplicaionUse8[Mbyte] per vector.(Total : 1716[Mbyte])
+Checking computed result for correctness: Result = PASS
+
+: Forpeak performance, please efer  theatrixMulCUBLAS examplSULT13.541763
+Process 74 finroce82 lach.his process is  : 0
+cudaHostAlloc : 0
+Thisplatin Use 858[Mbyte] p vec716[Me])
+>ResultTES : PSSionlod..My RESULT : 136.497940
+Process 75 finished.
+Process 83 launch.
+This process is child.
+
++----------------------------------------------------------+
+|> BACKUP START                                            |
++==========================================================+
+|  start events update.                                    |
+|  Finish ...                                              |
++----------------------------------------------------------+
+|  backup for Det.                    
+|  Finish ...                          +---------------------------------------+|  sh ...            +---------------------------------+
++------------------------|> BKUPTART                                         |
++==========================================================+
+|  start events update.                            ..                                +------------------------+
+.                   |lloce     8786.                          -----------------------------+
+Fini..               
++-----------------------------formance= 230.30 GFlop/s, Time= 93248.797 msec, Size= 4294967296000 Ops, WorkgroupSize= 1024 ds/bloc :utAllThis Sample Apn e= op/66376496roupS/bASSpeak, plo MulCUMy nch.chil CUDAing...
+6000 rkgroupSize= 1024 threads/block
+GPU Device 0: "Tesla K20cance, 5 l- Stacapabil----=======    -----P STT                +========================================t venpdae.               |  Fnish.             |
+------------------------- Fnish .                                          |
++----------------------------------------------------------+
+|  Finish ...                                             |
++--------------------------------+
+Chckingor correctnessesultASS
+orme, eaefer the mrixMuBLT : 206.971359
+Procs78 unch.
+Tproc is chi
+
++----------------------
+                      
+=======================================+
+|  ts update.                          |
+|  Fi                     --------------------------------------+
+|  backup force s                           Fih ..                       |-----------------------
+|                     |
++------------------------------------------------
+
+-------------------+                  ===================s date             |
+| ish                |
++----------------------art              -- CK acate  87 KFis.                 |
++----------------------+|                  
++-----------------+utng sultingA  Fish ..                  |----------------------h .                    +-------------------------Ct usig CUDA Kern 0
+cudaHostAl: 0h Application Usesperootal : 1716[ormae= 2401 GFlopk>uTP
+Aicion CloT : 139.580673
+Pres 7nisProcess 87chhis pro is chi[Matr Mtip Using  Sng. Dev: "T K2apabt5
+
+Mtri0240180,10)
++--------------------------------
+|> BACKUP                   
++====================== stt e             
+|Fi              |
+-----------------+
+ckuprice t.      |  [U  BACP] l         |
+ckiompess: RsulA
+Note Fe ref the mxlCUL8.612oces80 ish
+P.
+This process i Uing UDAStag..PU K h compute cali, xB048024
++-------------------+B                =================
+| rt evens ute.       
+| ish.              |
++------------------                |                  ---------------------------+
+|Fin                -----------------|  sh                +------------------+| inish .                +-----------------------------+
+CoA Kernel...
+donesult using CUDA Krne
+don>Result EApplication Closed...
+My RESULT : Proc81 fhed.Proclaunch.
+Thi pro i3 Gop/ime=5070 m94966000 Op, kgro
+
++-----------------------------------------------ST              ====================+sta evtspda      |
+| Fis ..            |----------------------.                                 ----------------Fini...          
++-------------------------------daHooc his amleliMbyter v.(T: 17[
+Chengmpued t fco PA
+Note: Foak po therixMCUexamplMy ULT : 212.4847Pros  launc.
+Thr[Matrix Multiply arg..My RESULT :Prs 8fini.
+Pr 91u ichild.
+[Matrix Multiply Using CUDA] - Starting...
+GPU Device 0: "Tesla K20c" with compute capability 3.5
+
+MatrixA(10240,1024), Mrix: "la with compuapabiliMatriA(102sult :P
+Applicai 21335roce4 fshedess s ch[MatultsDevice"T K2 wompu10240)0480,10CompA Kernel...
+done resuusinUDA Kernel...
+done
+
++----------------------------------------------------------+
+|> BACKUP START                                        |
+==================+ate              ini.              |
+------------------------------bp foicet.            || in ..              |+--------------------|  Finh .                        -------------------------+
++-------------------------------+
+|> BACKUP START                     |
++================+
+| t eve upde.           
+|Fin..              |
+------------------tart            CU -- BACKUP] aoc K          
+|nis                ------------------+
+|  Finish ...                                          |
++-----------------------+
+Cmpung rulng done
+ultES PASplised...
+My RESULT : 149.566925
+Process 85 finished.
+Process 93 launch.
+This process is child.
+[Matrix Multiply Using CUDA] - Starting...
+GPU Device 0: "Tesla K20c" witilit
+MatrixA(10240,10240), MatrixB(20480,10240)
+
++----------------------------------------------------------+
+|> BACKUP START                                      
++=========================
+|  start                     Fih                   |
++------------------------------+
+|  barice             |  Finsh .                 +-------------------------------------+
+|  Finish ...                                              |
++----------------------------------------------------------+
+
++-----------------------------------------ART                              =================+
+|tarve updae.        |
+|  Finis                   
++----------------------------------------------------------+
+|  backup for Devic             |
+|lloate 0960      |  Fini ...                                    
++-----------------|  Finish ..                      --------------------+
+Computing rne.done
+Peorma24 Time= 892781 msSWorkgrou= 14 threg coute ret forrS
+
+Note: For peaklaseeferto matixxame.
+My RLT :8.9heoce lau
+This pris child.
+
++----------------------------------------------------------+
+|> BACKUP START                            
+================  s eves da           Fih ...              |-----------------------r icet.         |  Finish ...                     +----------------------------------------+
+|  Finish ...                                              |
++-------------------------------+
+cHoAllo 0
+u SampApplication pctootal: 16[M])lop/, Time58464.9000 , kgroize02tmpu rest  rects:eNote: F pk ormnce pleefethmatlCUBple.
+My RESULT : 200.192596
+Process 87 finished.
+Process 95 launch.
+This process is child.
+[Matrix Multiply Using CUDA] - Starting...
+GPU Device 0: "Tesla K20c" with compute capabilittri(10240)Maix20---------------------------------- UP STA                          +================================| art vents update.                                sh ...                           |+-----------------------------------------------ackupfevistart.                   .              
++-------------------------------+                -----------------+
+Computing resu...
+donePerformanGF/s, Time= 139443.406 msec, S 42Siz 10thre/lo
+Cck cctnesRest =S
+
+Note: For peak performance, please refer to the maLAS exle.
+ULT2093
+Process 96 unc
+
++------------------------+
+|> BACKUP START                                            |
++===========================+
+|  start nts a     |  i.                       +-----------------------
+|  up vic         |
+|Fini          -------------------|  Finish ...                                              |
++-------------------------------------------+
+cudaloc: cudaople Application Uses 858[Mbyte] per vector.(Total : 1716[Mbyte])
+>t : PSS
+icon Cd.MProcess 89 nised97 ch.
+Thicessisl
++-------------------------------
+|> BACKUP START                                            |
++================================+
+|                                |
+|  Finish ...                                      ---------------------------------|  kup for Device start.         |  Finish ...                             |
++---------------------|  Finis..                       ----------------------------+
+
++----------------------------------------------------------+
+|> BACKUP START                         +=================areveupate.                     
+                        |
++-----------------------|  backup for Dece start.           
+|  [MO-- UP]ocate     878906  ...                 +-------------------------+
+|..               +---------------
+Performance= 236.84 GFlop/s, Tme42946000 ps,roupSaHotAl : 0udatAc le Application Uses 858[Mbyte] per vector.(Total : 1716[Mbyte])
+Performance= 128.92 GFlop/s, Time= 166580.406 msec, e=94967296000 Ophreds/k
+Perfonce8e= 166591.89s Siz9672 O Wroup 102Chng comp result fo corcss:sul PANote:Fopeak performance, please rCU exa.
+MyRES: 77 90 finished.ro 9is d.
+----------------------+
+ BA             
++=================|  start events update.                            |  Finish ...                                |
++------------------
+|  ba forevi sta       |
+|  Fini                 -----------------Fini..          +----------------------+cudaHll 0cudtAlloThis le les 858[Mbyte] per vector.(Total : 1716[Mbyte])
+Checking computed result for correctness: Result = PAS mp.
+Checking computed result foResu= PA
+Note: Fpemanlesefero  mtRELT 9.34
+y RESUs
+Poces99 .
+Thpro2 shedoce0 lh.Second Step End...
+This process is child.
+[Matrix Multiply Using CUDA] - Starting...
+GPU Device 0: "Teute capability 3.5
+
+MatrixA(10240,10240), MatrixB(20480,10240)
+Performance= 129.10 GFlop/s, Time= 169.07 msSiz297296oupze= 1024 tds/b
+cudaHostAloc 0
+This Sample Application Uses858[Mtota716e])Computing result using CUDA Kernel...
+done
+Checking computed result for correctness: Resul= PASS
+Note: For peak performance, please refer to the matrixMulCUBLAS example.
+My T 14.67022
+Perrmae= 396 msc, Size9pSi102ead/bl
+ProChecking computed result for correctness: Result =
+Note: For peak performance, please refer tothatriMy RESULT : 204.Process 94 nished>Result TEST : PAApplication ClosT 8.382446
+ProcessTE :PASApplicat..My SULT :62.3
+Pnish
+Perf= 2.63GF4 msec, Size= 4294967296000 Ops, WorkgroupSize= 1024 threads/block
+>Result TEST : PASS
+Application Closed...
+ REST : fied.eckiomputeectness: Result= Note: For peak performance, please refer to the matrixMulCUBLAS exMy RESULT : 124.9Procss 98 finishe>Result TEST : PASS
+Application Closed...
+My RESULT : 138.323608
+Proces 99 finishedionClo..
+My RESULT : 145.674927
+Process 100 finished.
+Every processes completed!
+Result time : 2315.061523[sec]

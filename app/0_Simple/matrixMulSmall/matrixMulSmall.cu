@@ -248,7 +248,7 @@ int matrixMultiply(int argc, char **argv, int block_size, dim3 &dimsA, dim3 &dim
     }
 
     // Execute the kernel
-    int nIter = 5;
+    int nIter = 1000000;
 
     for (int j = 0; j < nIter; j++)
     {
@@ -423,10 +423,12 @@ int main(int argc, char **argv)
     // Use a larger block size for Fermi and above
     int block_size = (deviceProp.major < 2) ? 16 : 32;
 
-    //    dim3 dimsA(4*10*10*block_size, 4*10*10*block_size, 1);
-    //    dim3 dimsB(4*10*10*block_size, 4*10*10*block_size, 1);
-    dim3 dimsA(5*2*block_size*8*4, 5*2*block_size*8*4, 1);
-    dim3 dimsB(5*4*block_size*8*4, 5*2*block_size*8*4, 1);
+    //    dim3 dimsA(5*2*block_size, 5*2*block_size, 1);
+    //    dim3 dimsB(5*4*block_size, 5*2*block_size, 1);
+    //small no tokoro
+    int _size = 5;
+    dim3 dimsA(_size*block_size, _size*block_size, 1);
+    dim3 dimsB(_size*block_size, _size*block_size, 1);
 
 
     // width of Matrix A

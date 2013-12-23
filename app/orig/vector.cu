@@ -10,6 +10,7 @@
 #include <cuda_runtime.h>
 #include <unistd.h>
 #include <sys/wait.h>
+#include <sys/time.h>
 
 /**
    Simple Kernel.
@@ -23,7 +24,17 @@ __global__ void ___add(float* a,float* b,unsigned long size){
   a[id] += b[id];
 }
 
+static float elapsed(struct timeval tv0,struct timeval tv1){
+	return (float)(tv1.tv_sec - tv0.tv_sec)
+		+ (float)(tv1.tv_usec - tv0.tv_usec)
+		* 0.000001f;
+}
+
 int main(void){
+
+  struct timeval t0,t1;
+
+  gettimeofday(&t0,NULL);
   
   /**
      Define Vector Size.
@@ -67,12 +78,12 @@ int main(void){
     h_b[i] = 1.0f;
   }
 
-  int ite = 10000;
+  int ite = 100;
 
   for(int j = 0 ; j < ite ; j ++){
 
-  cudaMemcpy(d_a,h_a,sizeof(float)*size,cudaMemcpyHostToDevice);
-  cudaMemcpy(d_b,h_b,sizeof(float)*size,cudaMemcpyHostToDevice);
+    cudaMemcpy(d_a,h_a,sizeof(float)*size,cudaMemcpyHostToDevice);
+    cudaMemcpy(d_b,h_b,sizeof(float)*size,cudaMemcpyHostToDevice);
 
   int _size = 10;
   dim3 threads(_size,_size,1);
@@ -118,6 +129,10 @@ int main(void){
   //  free(h_c);
 
   printf("Application Closed...\n");
+
+  gettimeofday(&t1,NULL);
+
+  printf("My RESULT : %f\n",elapsed(t0,t1));
 
   return 0;
 }

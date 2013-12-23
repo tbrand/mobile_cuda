@@ -1,0 +1,9 @@
+Explanation of Modes( plan )
+
+NONE                      : no migration, no scheduling.
+
+GATHER                    : gathering processes to use memory efficientry, but not speedy.
+
+DIFFUCE                   : diffucing processes from the beginning, and migrate process if it failed to allocate memory.
+
+ONLY_ONE_PROC_ON_EACH_DEV : 

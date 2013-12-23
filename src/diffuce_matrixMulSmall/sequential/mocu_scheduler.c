@@ -3,11 +3,11 @@
 #include <unistd.h>
 #include <sys/wait.h>
 
-#define PATH_TO_PROG "../../app/0_Simple/matrixMul/matrixMul"
+#define PATH_TO_PROG  "../../../app/0_Simple/matrixMulSmall/matrixMulSmall"
 #define PROC_NUM 20
 #define DEV_NUM 4
 
-pid_t pids[DEV_NUM*2];
+pid_t pids[DEV_NUM];
 int status;
 int proc_counter;
 
@@ -24,12 +24,12 @@ int main(){
 
   struct timeval tv0,tv1;
 
-  gettimeofday(&tv0,NULL);
+  gettimeofday(&tv0);
 
   proc_counter = 0;
 
   int i;
-  for(i = 0 ; i < DEV_NUM*2 ; i ++){
+  for(i = 0 ; i < DEV_NUM ; i ++){
     fork_orig_proc(i);
   }
 
@@ -41,12 +41,12 @@ int main(){
 
     res = wait_proc();
 
-    for(j = 0 ; j < DEV_NUM*2 ; j ++){
+    for(j = 0 ; j < DEV_NUM ; j ++){
       if(pids[j] == res){
 
-	proc_counter ++;//point
+	proc_counter ++;
 
-	if(proc_counter + DEV_NUM*2 <= PROC_NUM){
+	if(proc_counter + DEV_NUM <= PROC_NUM){
 	  fork_orig_proc(j);
 	  break;
 	}else if(proc_counter == PROC_NUM){
@@ -65,14 +65,14 @@ int main(){
   return 0;
 }
 
-void fork_orig_proc(int p){
+int switch_counter = 0;
 
-  int pos = p%DEV_NUM;
-
-  pids[p] = fork();
-  if(pids[p] < 0){
+void fork_orig_proc(int pos){
+  
+  pids[pos] = fork();
+  if(pids[pos] < 0){
     exit(-1);
-  }else if(pids[p] == 0){
+  }else if(pids[pos] == 0){
 
     printf("This Proc is %d\n",pos);
 

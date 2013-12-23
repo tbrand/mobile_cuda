@@ -24,6 +24,9 @@ or you can use script like this
 
 >source env.sh
 
+#WARNING#
+Do NOT call cudaSetDevice() in your program, there is some possibility of failing to migrate.	
+
 This project depends on CUDA driver version, see Makefile @src.
 This project using original libcuda.so (usualy locate at /usr/lib64/libcuda.so) in libcuda.c, if you locate it another path, fix it before make it.
 The script 'env.sh' depends on your environmental.
