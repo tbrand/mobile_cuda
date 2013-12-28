@@ -4,7 +4,7 @@
 #include <sys/wait.h>
 #include <nvml.h>
 
-#define PROC_NUM 20
+#define PROC_NUM 100
 #define DEV_NUM 4
 #define PATH_TO_PROG  "../../app/0_Simple/matrixMulSmall/matrixMulSmall"
 

@@ -312,7 +312,11 @@ int _get_optimum_device_pos(){
   int procs = _actual_num_of_proc_at_device0();
   int i;
   for(i = 1 ; i < mocu.ndev ; i ++){
-    if(procs > _num_of_proc_at_device(i))pos = i;
+    int _num = _num_of_proc_at_device(i);
+    if(procs > _num){
+      procs = _num;
+      pos = i;
+    }
   }
   return pos;
 }
@@ -1057,15 +1061,16 @@ __attribute__((constructor())) void __init_taichirou(){
 #if MODE
 
   //Process can enter here when MODE == 1.
-
-  int mocu_pos = _get_optimum_device_pos();
-  
-  if(mocu_pos != mocuID){
-    mocu_backup();
     lock_other_proc();
-    mocu_migrate(mocu_pos);
+
+    int mocu_pos = _get_optimum_device_pos();
+  
+    if(mocu_pos != mocuID){
+      mocu_backup();
+      mocu_migrate(mocu_pos);
+    }
+
     unlock_other_proc();
-  }
 
 #endif
 

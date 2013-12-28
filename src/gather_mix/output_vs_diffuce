@@ -1,0 +1,321 @@
+Process 1 launch.
+cudaHostAlloc : 0
+cudaHostAlloc : 0
+This Sample Application Uses 858[Mbyte] per vector.(Total : 1716[Mbyte])
+Process 2 launch.
+[Matrix Multiply Using CUDA] - Starting...
+GPU Device 0: "Tesla K20c" with compute capability 3.5
+
+MatrixA(10240,10240), MatrixB(20480,10240)
+Computing result using CUDA Kernel...
+done
+Process 3 launch.
+[Matrix Multiply Using CUDA] - Starting...
+GPU Device 0: "Tesla K20c" with compute capability 3.5
+
+MatrixA(10240,10240), MatrixB(20480,10240)
+Computing result using CUDA Kernel...
+done
+Process 4 launch.
+[Matrix Multiply Using CUDA] - Starting...
+GPU Device 0: "Tesla K20c" with compute capability 3.5
+
+MatrixA(10240,10240), MatrixB(20480,10240)
+Computing result using CUDA Kernel...
+done
+Process 5 launch.
+[Matrix Multiply Using CUDA] - Starting...
+GPU Device 0: "Tesla K20c" with compute capability 3.5
+
+MatrixA(10240,10240), MatrixB(20480,10240)
+Process 6 launch.
+cudaHostAlloc : 0
+cudaHostAlloc : 0
+This Sample Application Uses 858[Mbyte] per vector.(Total : 1716[Mbyte])
+Computing result using CUDA Kernel...
+done
+Process 7 launch.
+cudaHostAlloc : 0
+cudaHostAlloc : 0
+This Sample Application Uses 858[Mbyte] per vector.(Total : 1716[Mbyte])
+Process 8 launch.
+[Matrix Multiply Using CUDA] - Starting...
+GPU Device 0: "Tesla K20c" with compute capability 3.5
+
+MatrixA(10240,10240), MatrixB(20480,10240)
+Computing result using CUDA Kernel...
+done
+First Step End...
+>Result TEST : PASS
+Application Closed...
+My RESULT : 105.019310
+Process 1 finished.
+Process 9 launch.
+cudaHostAlloc : 0
+cudaHostAlloc : 0
+This Sample Application Uses 858[Mbyte] per vector.(Total : 1716[Mbyte])
+Performance= 246.30 GFlop/s, Time= 87190.602 msec, Size= 4294967296000 Ops, WorkgroupSize= 1024 threads/block
+Performance= 246.16 GFlop/s, Time= 87240.438 msec, Size= 4294967296000 Ops, WorkgroupSize= 1024 threads/block
+Checking computed result for correctness: Result = PASS
+
+Note: For peak performance, please refer to the matrixMulCUBLAS example.
+My RESULT : 121.529739
+Process 2 finished.
+Process 10 launch.
+[Matrix Multiply Using CUDA] - Starting...
+GPU Device 0: "Tesla K20c" with compute capability 3.5
+
+MatrixA(10240,10240), MatrixB(20480,10240)
+Checking computed result for correctness: Result = PASS
+
+Note: For peak performance, please refer to the matrixMulCUBLAS example.
+My RESULT : 120.920181
+Process 3 finished.
+Process 11 launch.
+[Matrix Multiply Using CUDA] - Starting...
+GPU Device 0: "Tesla K20c" with compute capability 3.5
+
+MatrixA(10240,10240), MatrixB(20480,10240)
+Computing result using CUDA Kernel...
+done
+>Result TEST : PASS
+Application Closed...
+My RESULT : 110.741844
+Computing result using CUDA Kernel...
+done
+Process 4 finished.
+Process 12 launch.
+[Matrix Multiply Using CUDA] - Starting...
+GPU Device 0: "Tesla K20c" with compute capability 3.5
+
+MatrixA(10240,10240), MatrixB(20480,10240)
+Computing result using CUDA Kernel...
+done
+Performance= 240.36 GFlop/s, Time= 89343.461 msec, Size= 4294967296000 Ops, WorkgroupSize= 1024 threads/block
+>Result TEST : PASS
+Application Closed...
+My RESULT : 108.515739
+Process 5 finished.
+Process 13 launch.
+cudaHostAlloc : 0
+cudaHostAlloc : 0
+This Sample Application Uses 858[Mbyte] per vector.(Total : 1716[Mbyte])
+Checking computed result for correctness: Result = PASS
+
+Note: For peak performance, please refer to the matrixMulCUBLAS example.
+My RESULT : 139.380844
+Process 6 finished.
+Process 14 launch.
+[Matrix Multiply Using CUDA] - Starting...
+GPU Device 0: "Tesla K20c" with compute capability 3.5
+
+MatrixA(10240,10240), MatrixB(20480,10240)
+Performance= 149.11 GFlop/s, Time= 144022.609 msec, Size= 4294967296000 Ops, WorkgroupSize= 1024 threads/block
+Computing result using CUDA Kernel...
+done
+Checking computed result for correctness: Result = PASS
+
+Note: For peak performance, please refer to the matrixMulCUBLAS example.
+My RESULT : 169.466705
+Process 7 finished.
+Process 15 launch.
+[Matrix Multiply Using CUDA] - Starting...
+GPU Device 0: "Tesla K20c" with compute capability 3.5
+
+MatrixA(10240,10240), MatrixB(20480,10240)
+Computing result using CUDA Kernel...
+done
+>Result TEST : PASS
+Application Closed...
+My RESULT : 106.572357
+Process 8 finished.
+Process 16 launch.
+[Matrix Multiply Using CUDA] - Starting...
+GPU Device 0: "Tesla K20c" with compute capability 3.5
+
+MatrixA(10240,10240), MatrixB(20480,10240)
+Computing result using CUDA Kernel...
+done
+Performance= 155.34 GFlop/s, Time= 138246.094 msec, Size= 4294967296000 Ops, WorkgroupSize= 1024 threads/block
+Performance= 242.72 GFlop/s, Time= 88474.445 msec, Size= 4294967296000 Ops, WorkgroupSize= 1024 threads/block
+Checking computed result for correctness: Result = PASS
+
+Note: For peak performance, please refer to the matrixMulCUBLAS example.
+My RESULT : 199.183807
+Process 9 finished.
+Process 17 launch.
+[Matrix Multiply Using CUDA] - Starting...
+GPU Device 0: "Tesla K20c" with compute capability 3.5
+
+MatrixA(10240,10240), MatrixB(20480,10240)
+Computing result using CUDA Kernel...
+done
+Checking computed result for correctness: Result = PASS
+
+Note: For peak performance, please refer to the matrixMulCUBLAS example.
+My RESULT : 137.486374
+>Result TEST : PASS
+Process 10 finished.
+Process 18 launch.
+Application Closed...
+My RESULT : 114.046440
+Process 11 finished.
+Process 19 launch.
+cudaHostAlloc : 0
+cudaHostAlloc : 0
+This Sample Application Uses 858[Mbyte] per vector.(Total : 1716[Mbyte])
+cudaHostAlloc : 0
+cudaHostAlloc : 0
+This Sample Application Uses 858[Mbyte] per vector.(Total : 1716[Mbyte])
+Performance= 129.29 GFlop/s, Time= 166095.531 msec, Size= 4294967296000 Ops, WorkgroupSize= 1024 threads/block
+Checking computed result for correctness: Result = PASS
+
+Note: For peak performance, please refer to the matrixMulCUBLAS example.
+My RESULT : 210.160431
+Process 12 finished.
+Process 20 launch.
+Second Step End...
+[Matrix Multiply Using CUDA] - Starting...
+GPU Device 0: "Tesla K20c" with compute capability 3.5
+
+MatrixA(10240,10240), MatrixB(20480,10240)
+Computing result using CUDA Kernel...
+done
+Performance= 147.34 GFlop/s, Time= 145750.672 msec, Size= 4294967296000 Ops, WorkgroupSize= 1024 threads/block
+Checking computed result for correctness: Result = PASS
+
+Note: For peak performance, please refer to the matrixMulCUBLAS example.
+My RESULT : 199.794403
+Process 13 finished.
+pid == 6993 finish ...
+Performance= 134.15 GFlop/s, Time= 160077.109 msec, Size= 4294967296000 Ops, WorkgroupSize= 1024 threads/block
+Checking computed result for correctness: Result = PASS
+
+Note: For peak performance, please refer to the matrixMulCUBLAS example.
+My RESULT : 201.273193
+Process 14 finished.
+pid == 7001 finish ...
+Performance= 143.56 GFlop/s, Time= 149590.453 msec, Size= 4294967296000 Ops, WorkgroupSize= 1024 threads/block
+Performance= 169.21 GFlop/s, Time= 126913.656 msec, Size= 4294967296000 Ops, WorkgroupSize= 1024 threads/block
+Checking computed result for correctness: Result = PASS
+
+Note: For peak performance, please refer to the matrixMulCUBLAS example.
+My RESULT : 198.940781
+Process 15 finished.
+pid == 7010 finish ...
+Checking computed result for correctness: Result = PASS
+
+Note: For peak performance, please refer to the matrixMulCUBLAS example.
+My RESULT : 185.875320
+Process 16 finished.
+pid == 7013 finish ...
+Performance= 193.13 GFlop/s, Time= 111195.648 msec, Size= 4294967296000 Ops, WorkgroupSize= 1024 threads/block
+Checking computed result for correctness: Result = PASS
+
+Note: For peak performance, please refer to the matrixMulCUBLAS example.
+My RESULT : 170.012024
+Process 17 finished.
+pid == 7024 finish ...
+Performance= 258.72 GFlop/s, Time= 83003.891 msec, Size= 4294967296000 Ops, WorkgroupSize= 1024 threads/block
+>Result TEST : PASS
+Application Closed...
+My RESULT : 171.092743
+Process 18 finished.
+pid == 7027 finish ...
+>Result TEST : PASS
+Application Closed...
+My RESULT : 171.684555
+Process 19 finished.
+pid == 7028 finish ...
+Checking computed result for correctness: Result = PASS
+
+Note: For peak performance, please refer to the matrixMulCUBLAS example.
+My RESULT : 111.009148
+Process 20 finished.
+pid == 7041 finish ...
+Every processes completed!
+Result time : 453.000000[sec]
+PID == 6938
+Start : 0
+End   : 105
+Time  : 105
+PID == 6941
+Start : 9
+End   : 131
+Time  : 122
+PID == 6950
+Start : 18
+End   : 139
+Time  : 121
+PID == 6955
+Start : 27
+End   : 197
+Time  : 170
+PID == 6958
+Start : 36
+End   : 176
+Time  : 140
+PID == 6961
+Start : 45
+End   : 156
+Time  : 111
+PID == 6964
+Start : 54
+End   : 163
+Time  : 109
+PID == 6967
+Start : 63
+End   : 262
+Time  : 199
+PID == 6978
+Start : 105
+End   : 212
+Time  : 107
+PID == 6981
+Start : 131
+End   : 341
+Time  : 210
+PID == 6990
+Start : 139
+End   : 277
+Time  : 138
+PID == 6993
+Start : 156
+End   : 357
+Time  : 201
+PID == 6996
+Start : 163
+End   : 278
+Time  : 115
+PID == 7001
+Start : 176
+End   : 377
+Time  : 201
+PID == 7010
+Start : 197
+End   : 396
+Time  : 199
+PID == 7013
+Start : 212
+End   : 398
+Time  : 186
+PID == 7024
+Start : 262
+End   : 433
+Time  : 171
+PID == 7027
+Start : 277
+End   : 449
+Time  : 172
+PID == 7028
+Start : 278
+End   : 450
+Time  : 172
+PID == 7041
+Start : 341
+End   : 453
+Time  : 112
+
+
+
+

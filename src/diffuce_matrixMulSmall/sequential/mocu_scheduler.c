@@ -4,7 +4,7 @@
 #include <sys/wait.h>
 
 #define PATH_TO_PROG  "../../../app/0_Simple/matrixMulSmall/matrixMulSmall"
-#define PROC_NUM 20
+#define PROC_NUM 100
 #define DEV_NUM 4
 
 pid_t pids[DEV_NUM];
