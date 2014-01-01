@@ -39,7 +39,7 @@ int main(void){
   /**
      Define Vector Size.
    **/
-  unsigned long _hen = 15000;
+  unsigned long _hen = 11000;
   //  unsigned long _hen = 15000;
   unsigned long size = _hen * _hen;
   /**
@@ -78,7 +78,8 @@ int main(void){
     h_b[i] = 1.0f;
   }
 
-  int ite = 200;
+  //  int ite = 100;
+  int ite = 1000000;
 
   for(int j = 0 ; j < ite ; j ++){
 

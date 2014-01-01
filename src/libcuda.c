@@ -47,9 +47,9 @@
 #define DEBUG         0
 #define DEBUG_ERROR   0
 #define PRINT_LOG     0
-#define DEBUG_RESTORE 0
-#define DEBUG_MIG 0
-#define DEBUG_BACKUP 0
+#define DEBUG_RESTORE 1
+#define DEBUG_MIG 1
+#define DEBUG_BACKUP 1
 
 #define DEBUG_SEMAPHORE 0
 
@@ -4292,8 +4292,6 @@ CUresult cuFuncSetSharedMemConfig(CUfunction hfunc,CUsharedconfig config)
 
   return res;
 }
-
-int kernel_mig_counter = 0;
 
 CUresult cuLaunchKernel(CUfunction f,unsigned int gridDimX,unsigned int gridDimY,unsigned int gridDimZ,unsigned int blockDimX,unsigned int blockDimY,unsigned int blockDimZ,unsigned int sharedMemBytes,CUstream hStream,void **kernelParams,void **extra)
 {
