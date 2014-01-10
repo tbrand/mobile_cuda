@@ -248,7 +248,8 @@ int matrixMultiply(int argc, char **argv, int block_size, dim3 &dimsA, dim3 &dim
     }
 
     // Execute the kernel
-    int nIter = 100000;
+    //    int nIter = 100000;
+    int nIter = 300;
 
     for (int j = 0; j < nIter; j++)
     {
@@ -426,8 +427,8 @@ int main(int argc, char **argv)
     //    dim3 dimsA(5*2*block_size, 5*2*block_size, 1);
     //    dim3 dimsB(5*4*block_size, 5*2*block_size, 1);
     //small no tokoro
-    int __size = 5;
-    int  _size = 5;
+    int __size = 100;
+    int  _size = 100;
     dim3 dimsA(__size*block_size, _size*block_size, 1);
     dim3 dimsB(_size*block_size, __size*block_size, 1);
 

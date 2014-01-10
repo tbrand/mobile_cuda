@@ -56,6 +56,8 @@ typedef struct _texref {
   int NumPackedComponents;
   int dim;
   CUaddress_mode am;
+
+
   CUfilter_mode fm;
   unsigned int Flags;
   array *a;

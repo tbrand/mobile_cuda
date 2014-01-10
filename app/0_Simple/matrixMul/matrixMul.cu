@@ -427,6 +427,7 @@ int main(int argc, char **argv)
     //    dim3 dimsB(4*10*10*block_size, 4*10*10*block_size, 1);
     dim3 dimsA(5*2*block_size*8*4, 5*2*block_size*8*4, 1);
     dim3 dimsB(5*4*block_size*8*4, 5*2*block_size*8*4, 1);
+    //    dim3 dimsB(5*2*block_size*8*4, 5*2*block_size*8*4, 1);
 
 
     // width of Matrix A
@@ -466,7 +467,7 @@ int main(int argc, char **argv)
 
     gettimeofday(&tv1,NULL);
 
-    printf("My RESULT : %f\n",elapsed(tv0,tv1));
+    printf("My RESULT : %f(matrixMul)\n",elapsed(tv0,tv1));
 
     exit(matrix_result);
 }

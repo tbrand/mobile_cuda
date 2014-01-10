@@ -44,12 +44,12 @@
 //for nvml
 #include <nvml.h>
 
-#define DEBUG         0
+#define DEBUG         1
 #define DEBUG_ERROR   0
 #define PRINT_LOG     0
-#define DEBUG_RESTORE 1
-#define DEBUG_MIG 1
-#define DEBUG_BACKUP 1
+#define DEBUG_RESTORE 0
+#define DEBUG_MIG 0
+#define DEBUG_BACKUP 0
 
 #define DEBUG_SEMAPHORE 0
 
@@ -1947,8 +1947,8 @@ CUresult cuModuleLoadDataEx(CUmodule *_module,const void *vimage,unsigned int nu
 
 CUresult cuModuleGetGlobal_v2(CUdeviceptr *dptr,size_t *bytes,CUmodule hmod,const char *name)
 {
-  //#if DEBUG||D_MODULE
-#if 1
+#if DEBUG||D_MODULE
+  //#if 1
   printf("[MOCU] cuModuleGetGlobal_v2 is called.\n");
 #endif
 
@@ -2152,7 +2152,8 @@ CUresult cuModuleGetFunction(CUfunction *hfunc,CUmodule hmod,const char *name)
   */
 
   //  res = mocuCtxSetCurrent(cp->user);printf("@@@@@@@@@@@@@@@@@@@@ Get Funtion(user) : %d\n",res);
-  res = mocuModuleGetFunction(&f,mp->m,name);
+  //change point sita
+  //  res = mocuModuleGetFunction(&f,mp->m,name);
   //  printf("                  : %p\n",f);
 
   //  res = mocuCtxSetCurrent(cp->ctx);printf("@@@@@@@@@@@@@@@@@@@@ Get Funtion(ctx)  : %d\n",res);
@@ -6008,7 +6009,6 @@ void mocu_event_restore(context* cp){
 
   mocuEventCreate(&cp->e0->e, 0);
   mocuEventCreate(&cp->e1->e, 0);
-  mocuEventRecord(cp->e1->e,0);
 
   ep = cp->e0->next;
 
@@ -6020,6 +6020,8 @@ void mocu_event_restore(context* cp){
     }
     ep = ep->next;
   }
+
+  mocuEventRecord(cp->e0->e,0);
 
 #if DEBUG_RESTORE
   printf("+----------------------------------------------------------+\n");

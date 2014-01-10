@@ -49,6 +49,9 @@ const char *sDeviceSyncMethod[] =
     NULL
 };
 
+#include <sys/time.h>
+#include <sys/wait.h>
+
 // System includes
 #include <stdio.h>
 #include <assert.h>
@@ -68,6 +71,12 @@ const char *sDeviceSyncMethod[] =
 // Macro to aligned up to the memory size in question
 #define MEMORY_ALIGNMENT  4096
 #define ALIGN_UP(x,size) ( ((size_t)x+(size-1))&(~(size-1)) )
+
+static float elapsed(struct timeval tv0,struct timeval tv1){
+	return (float)(tv1.tv_sec - tv0.tv_sec)
+		+ (float)(tv1.tv_usec - tv0.tv_usec)
+		* 0.000001f;
+}
 
 __global__ void init_array(int *g_data, int *factor, int num_iterations)
 {
@@ -178,6 +187,11 @@ void printHelp()
 
 int main(int argc, char **argv)
 {
+
+  struct timeval tv0,tv1;
+
+  gettimeofday(&tv0,NULL);
+
     int cuda_device = 0;
     int nstreams = 4;               // number of streams for CUDA calls
     int nreps = 10;                 // number of times each experiment is repeated
@@ -369,7 +383,7 @@ int main(int argc, char **argv)
     checkCudaErrors(cudaEventRecord(start_event, 0));
 
     //TEST
-    nreps = 10000;
+    nreps = 1000;
     for (int k = 0; k < nreps; k++)
     {
         init_array<<<blocks, threads>>>(d_a, d_c, niterations);
@@ -428,6 +442,11 @@ int main(int argc, char **argv)
     checkCudaErrors(cudaFree(d_c));
 
     checkCudaErrors(cudaDeviceReset());
+
+    gettimeofday(&tv1,NULL);
+
+    printf("My RESULT : %f(matrixMul)\n",elapsed(tv0,tv1));
+
 
     return bResults ? EXIT_SUCCESS : EXIT_FAILURE;
 }

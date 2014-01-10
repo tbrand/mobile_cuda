@@ -40,7 +40,7 @@ int main(void){
      Define Vector Size.
    **/
   //  unsigned long _hen = 11000;
-  unsigned long _hen = 18000;
+  unsigned long _hen = 20000;
   unsigned long size = _hen * _hen;
   /**
      Number Of Launch Kernel.
@@ -78,7 +78,7 @@ int main(void){
     h_b[i] = 1.0f;
   }
 
-  int ite = 140;
+  int ite = 100;
   //  int ite = 250;
   //  int ite = 1000000;
 

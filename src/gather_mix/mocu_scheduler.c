@@ -5,10 +5,11 @@
 #include <sys/time.h>
 #include <nvml.h>
 
-#define PROC_NUM 100
+#define PROC_NUM 10
 #define DEV_NUM 4
 #define PATH_TO_PROG   "../../app/0_Simple/matrixMul/matrixMul"
-#define PATH_TO_PROG2  "../../app/orig/sample"
+//#define PATH_TO_PROG2  "../../app/orig/sample"
+#define PATH_TO_PROG2 "../../app/1_Utilities/bandwidthTest/bandwidthTest"
 
 #define MATRIX_MEMORY    2123//[MB]
 
@@ -128,9 +129,9 @@ int main(){
 
   for(k = 0 ; k < PROC_NUM ; k ++){
     printf("PID == %lld\n",DATA[k].my_pid);
-    printf("Start : %d\n",DATA[k].start.tv_sec);
+    printf("Start : %d(%d)\n",DATA[k].start.tv_sec,(DATA[k].start.tv_sec*4)/5);
     printf("End   : %d\n",DATA[k].end.tv_sec);
-    printf("Time  : %d\n",DATA[k].end.tv_sec - DATA[k].start.tv_sec);
+    printf("Time  : %d(%d)\n",DATA[k].end.tv_sec - DATA[k].start.tv_sec,((DATA[k].end.tv_sec - DATA[k].start.tv_sec)*4)/5);
   }
 
 }
@@ -164,7 +165,7 @@ void fork_child_proc(){
       execl(PATH_TO_PROG,NULL);
     else
       //      execl(PATH_TO_PROG2,NULL);
-      execl(PATH_TO_PROG,NULL);
+      execl(PATH_TO_PROG2,NULL);
     exit(0);
   }else{
     struct timeval start;
