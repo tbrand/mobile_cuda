@@ -122,9 +122,11 @@ build: simpleStreams
 
 simpleStreams.o: simpleStreams.cu
 	$(NVCC) $(INCLUDES) $(ALL_CCFLAGS) $(GENCODE_FLAGS) -o $@ -c $<
-	
+#	/opt/cuda/tk5.0/bin/nvcc $(INCLUDES) $(ALL_CCFLAGS) $(GENCODE_FLAGS) -o $@ -c $<
+
 simpleStreams: simpleStreams.o
 	$(NVCC) $(ALL_LDFLAGS) -o $@ $+ $(LIBRARIES)
+#	/opt/cuda/tk5.0/bin/nvcc $(ALL_LDFLAGS) -o $@ $+ $(LIBRARIES)
 	mkdir -p ../../bin/$(OS_ARCH)/$(OSLOWER)/$(TARGET)$(if $(abi),/$(abi))
 	cp $@ ../../bin/$(OS_ARCH)/$(OSLOWER)/$(TARGET)$(if $(abi),/$(abi))
 

@@ -36,7 +36,8 @@
 include ./findcudalib.mk
 
 # Location of the CUDA Toolkit
-CUDA_PATH       ?= /usr/local/cuda-5.5
+#CUDA_PATH       ?= /usr/local/cuda-5.5
+CUDA_PATH       ?= /opt/cuda/tk5.0
 
 # internal flags
 NVCCFLAGS   := -m${OS_SIZE}
@@ -121,10 +122,12 @@ all: build
 build: deviceQuery
 
 deviceQuery.o: deviceQuery.cpp
-	$(NVCC) $(INCLUDES) $(ALL_CCFLAGS) $(GENCODE_FLAGS) -o $@ -c $<
+#	$(NVCC) $(INCLUDES) $(ALL_CCFLAGS) $(GENCODE_FLAGS) -o $@ -c $<
+	/opt/cuda/tk5.0/bin/nvcc $(INCLUDES) $(ALL_CCFLAGS) $(GENCODE_FLAGS) -o $@ -c $<
 
 deviceQuery: deviceQuery.o
-	$(NVCC) $(ALL_LDFLAGS) -o $@ $+ $(LIBRARIES)
+#	$(NVCC) $(ALL_LDFLAGS) -o $@ $+ $(LIBRARIES)
+	/opt/cuda/tk5.0/bin/nvcc $(ALL_LDFLAGS) -o $@ $+ $(LIBRARIES)
 	mkdir -p ../../bin/$(OS_ARCH)/$(OSLOWER)/$(TARGET)$(if $(abi),/$(abi))
 	cp $@ ../../bin/$(OS_ARCH)/$(OSLOWER)/$(TARGET)$(if $(abi),/$(abi))
 

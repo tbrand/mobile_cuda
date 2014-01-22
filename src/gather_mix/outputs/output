@@ -1,0 +1,563 @@
+Process 1 launch.
+cudaHostAlloc : 0
+cudaHostAlloc : 0
+This Sample Application Uses 858[Mbyte] per vector.(Total : 1716[Mbyte])
+Process 2 launch.
+[Matrix Multiply Using CUDA] - Starting...
+GPU Device 0: "Tesla K20c" with compute capability 3.5
+
+MatrixA(10240,10240), MatrixB(20480,10240)
+Process 3 launch.
+[Matrix Multiply Using CUDA] - Starting...
+GPU Device 0: "Tesla K20c" with compute capability 3.5
+
+MatrixA(10240,10240), MatrixB(20480,10240)
+
++----------------------------------------------------------+
+|> BACKUP START                                            |
++==========================================================+
+|  start events update.                                    |
+|  Finish ...                                              |
++----------------------------------------------------------+
+|  backup for Device start.                                |
+|  [MOCU -- BACKUP] allocate     409600 KB.                |
+|  Finish ...                                              |
++----------------------------------------------------------+
+|  Finish ...                                              |
++----------------------------------------------------------+
+Computing result using CUDA Kernel...
+done
+Process 4 launch.
+[Matrix Multiply Using CUDA] - Starting...
+Computing result using CUDA Kernel...
+done
+GPU Device 0: "Tesla K20c" with compute capability 3.5
+
+MatrixA(10240,10240), MatrixB(20480,10240)
+
++----------------------------------------------------------+
+|> BACKUP START                                            |
++==========================================================+
+|  start events update.                                    |
+|  Finish ...                                              |
++----------------------------------------------------------+
+|  backup for Device start.                                |
+|  [MOCU -- BACKUP] allocate     409600 KB.                |
+|  Finish ...                                              |
++----------------------------------------------------------+
+|  Finish ...                                              |
++----------------------------------------------------------+
+Process 5 launch.
+[Matrix Multiply Using CUDA] - Starting...
+GPU Device 0: "Tesla K20c" with compute capability 3.5
+
+MatrixA(10240,10240), MatrixB(20480,10240)
+
++----------------------------------------------------------+
+|> BACKUP START                                            |
++==========================================================+
+|  start events update.                                    |
+|  Finish ...                                              |
++----------------------------------------------------------+
+|  backup for Device start.                                |
+|  [MOCU -- BACKUP] allocate     409600 KB.                |
+Computing result using CUDA Kernel...
+done
+|  Finish ...                                              |
++----------------------------------------------------------+
+|  Finish ...                                              |
++----------------------------------------------------------+
+Process 6 launch.
+Computing result using CUDA Kernel...
+done
+
++----------------------------------------------------------+
+|> BACKUP START                                            |
++==========================================================+
+|  start events update.                                    |
+|  Finish ...                                              |
++----------------------------------------------------------+
+|  backup for Device start.                                |
+|  Finish ...                                              |
++----------------------------------------------------------+
+|  Finish ...                                              |
++----------------------------------------------------------+
+cudaHostAlloc : 0
+cudaHostAlloc : 0
+This Sample Application Uses 858[Mbyte] per vector.(Total : 1716[Mbyte])
+Process 7 launch.
+
++----------------------------------------------------------+
+|> BACKUP START                                            |
++==========================================================+
+|  start events update.                                    |
+|  Finish ...                                              |
++----------------------------------------------------------+
+|  backup for Device start.                                |
+|  Finish ...                                              |
++----------------------------------------------------------+
+|  Finish ...                                              |
++----------------------------------------------------------+
+
++----------------------------------------------------------+
+|> BACKUP START                                            |
++==========================================================+
+|  start events update.                                    |
+|  Finish ...                                              |
++----------------------------------------------------------+
+|  backup for Device start.                                |
+|  [MOCU -- BACKUP] allocate     878906 KB.                |
+Process 8 launch.
+[Matrix Multiply Using CUDA] - Starting...
+GPU Device 0: "Tesla K20c" with compute capability 3.5
+
+MatrixA(10240,10240), MatrixB(20480,10240)
+
++----------------------------------------------------------+
+|> BACKUP START                                            |
++==========================================================+
+|  start events update.                                    |
+|  Finish ...                                              |
++----------------------------------------------------------+
+|  backup for Device start.                                |
+|  Finish ...                                              |
++----------------------------------------------------------+
+|  Finish ...                                              |
++----------------------------------------------------------+
+
++----------------------------------------------------------+
+|> BACKUP START                                            |
++==========================================================+
+|  start events update.                                    |
+|  Finish ...                                              |
++----------------------------------------------------------+
+|  backup for Device start.                                |
+|  [MOCU -- BACKUP] allocate     409600 KB.                |
+|  Finish ...                                              |
++----------------------------------------------------------+
+|  Finish ...                                              |
++----------------------------------------------------------+
+|  Finish ...                                              |
++----------------------------------------------------------+
+Computing result using CUDA Kernel...
+done
+|  Finish ...                                              |
++----------------------------------------------------------+
+cudaHostAlloc : 0
+cudaHostAlloc : 0
+This Sample Application Uses 858[Mbyte] per vector.(Total : 1716[Mbyte])
+First Step End...
+Performance= 240.35 GFlop/s, Time= 89346.594 msec, Size= 4294967296000 Ops, WorkgroupSize= 1024 threads/block
+Process 1 finished.
+Process 9 launch.
+cudaHostAlloc : 0
+cudaHostAlloc : 0
+This Sample Application Uses 858[Mbyte] per vector.(Total : 1716[Mbyte])
+Checking computed result for correctness: Result = PASS
+
+Note: For peak performance, please refer to the matrixMulCUBLAS example.
+My RESULT : 134.926178
+Process 2 finished.
+Process 10 launch.
+[Matrix Multiply Using CUDA] - Starting...
+GPU Device 0: "Tesla K20c" with compute capability 3.5
+
+MatrixA(10240,10240), MatrixB(20480,10240)
+Performance= 242.96 GFlop/s, Time= 88387.297 msec, Size= 4294967296000 Ops, WorkgroupSize= 1024 threads/block
+Computing result using CUDA Kernel...
+done
+Checking computed result for correctness: Result = PASS
+
+Note: For peak performance, please refer to the matrixMulCUBLAS example.
+My RESULT : 132.344894
+Process 3 finished.
+Process 11 launch.
+[Matrix Multiply Using CUDA] - Starting...
+GPU Device 0: "Tesla K20c" with compute capability 3.5
+
+MatrixA(10240,10240), MatrixB(20480,10240)
+Performance= 242.70 GFlop/s, Time= 88483.891 msec, Size= 4294967296000 Ops, WorkgroupSize= 1024 threads/block
+
++----------------------------------------------------------+
+|> BACKUP START                                            |
++==========================================================+
+|  start events update.                                    |
+|  Finish ...                                              |
++----------------------------------------------------------+
+|  backup for Device start.                                |
+|  Finish ...                                              |
++----------------------------------------------------------+
+|  Finish ...                                              |
++----------------------------------------------------------+
+
++----------------------------------------------------------+
+|> BACKUP START                                            |
++==========================================================+
+|  start events update.                                    |
+|  Finish ...                                              |
++----------------------------------------------------------+
+|  backup for Device start.                                |
+|  [MOCU -- BACKUP] allocate     409600 KB.                |
+|  Finish ...                                              |
++----------------------------------------------------------+
+|  Finish ...                                              |
++----------------------------------------------------------+
+Computing result using CUDA Kernel...
+done
+>Result TEST : PASS
+Application Closed...
+My RESULT : 140.679092
+Process 4 finished.
+Process 12 launch.
+[Matrix Multiply Using CUDA] - Starting...
+Checking computed result for correctness: Result = PASS
+
+Note: For peak performance, please refer to the matrixMulCUBLAS example.
+My RESULT : 125.688766
+Process 5 finished.
+Process 13 launch.
+GPU Device 0: "Tesla K20c" with compute capability 3.5
+
+MatrixA(10240,10240), MatrixB(20480,10240)
+
++----------------------------------------------------------+
+|> BACKUP START                                            |
++==========================================================+
+|  start events update.                                    |
+|  Finish ...                                              |
++----------------------------------------------------------+
+|  backup for Device start.                                |
+|  Finish ...                                              |
++----------------------------------------------------------+
+|  Finish ...                                              |
++----------------------------------------------------------+
+cudaHostAlloc : 0
+cudaHostAlloc : 0
+This Sample Application Uses 858[Mbyte] per vector.(Total : 1716[Mbyte])
+
++----------------------------------------------------------+
+|> BACKUP START                                            |
++==========================================================+
+|  start events update.                                    |
+|  Finish ...                                              |
++----------------------------------------------------------+
+|  backup for Device start.                                |
+|  Finish ...                                              |
++----------------------------------------------------------+
+|  Finish ...                                              |
++----------------------------------------------------------+
+
++----------------------------------------------------------+
+|> BACKUP START                                            |
++==========================================================+
+|  start events update.                                    |
+|  Finish ...                                              |
++----------------------------------------------------------+
+|  backup for Device start.                                |
+|  [MOCU -- BACKUP] allocate     409600 KB.                |
+|  Finish ...                                              |
++----------------------------------------------------------+
+|  Finish ...                                              |
++----------------------------------------------------------+
+Computing result using CUDA Kernel...
+done
+>Result TEST : PASS
+Application Closed...
+My RESULT : 149.567657
+Process 6 finished.
+Process 14 launch.
+[Matrix Multiply Using CUDA] - Starting...
+GPU Device 0: "Tesla K20c" with compute capability 3.5
+
+MatrixA(10240,10240), MatrixB(20480,10240)
+
++----------------------------------------------------------+
+|> BACKUP START                                            |
++==========================================================+
+|  start events update.                                    |
+|  Finish ...                                              |
++----------------------------------------------------------+
+|  backup for Device start.                                |
+|  Finish ...                                              |
++----------------------------------------------------------+
+|  Finish ...                                              |
++----------------------------------------------------------+
+
++----------------------------------------------------------+
+|> BACKUP START                                            |
++==========================================================+
+|  start events update.                                    |
+|  Finish ...                                              |
++----------------------------------------------------------+
+|  backup for Device start.                                |
+|  [MOCU -- BACKUP] allocate     409600 KB.                |
+|  Finish ...                                              |
++----------------------------------------------------------+
+|  Finish ...                                              |
++----------------------------------------------------------+
+Computing result using CUDA Kernel...
+done
+Performance= 128.93 GFlop/s, Time= 166562.844 msec, Size= 4294967296000 Ops, WorkgroupSize= 1024 threads/block
+Checking computed result for correctness: Result = PASS
+
+Note: For peak performance, please refer to the matrixMulCUBLAS example.
+My RESULT : 203.778427
+Process 7 finished.
+Process 15 launch.
+[Matrix Multiply Using CUDA] - Starting...
+GPU Device 0: "Tesla K20c" with compute capability 3.5
+
+MatrixA(10240,10240), MatrixB(20480,10240)
+
++----------------------------------------------------------+
+|> BACKUP START                                            |
++==========================================================+
+|  start events update.                                    |
+|  Finish ...                                              |
++----------------------------------------------------------+
+|  backup for Device start.                                |
+|  Finish ...                                              |
++----------------------------------------------------------+
+|  Finish ...                                              |
++----------------------------------------------------------+
+Computing result using CUDA Kernel...
+done
+Performance= 145.99 GFlop/s, Time= 147101.656 msec, Size= 4294967296000 Ops, WorkgroupSize= 1024 threads/block
+Checking computed result for correctness: Result = PASS
+
+Note: For peak performance, please refer to the matrixMulCUBLAS example.
+My RESULT : 206.028030
+Process 8 finished.
+Process 16 launch.
+[Matrix Multiply Using CUDA] - Starting...
+GPU Device 0: "Tesla K20c" with compute capability 3.5
+
+MatrixA(10240,10240), MatrixB(20480,10240)
+
++----------------------------------------------------------+
+|> BACKUP START                                            |
++==========================================================+
+|  start events update.                                    |
+|  Finish ...                                              |
++----------------------------------------------------------+
+|  backup for Device start.                                |
+|  Finish ...                                              |
++----------------------------------------------------------+
+|  Finish ...                                              |
++----------------------------------------------------------+
+Computing result using CUDA Kernel...
+done
+Performance= 237.00 GFlop/s, Time= 90609.922 msec, Size= 4294967296000 Ops, WorkgroupSize= 1024 threads/block
+>Result TEST : PASS
+Application Closed...
+My RESULT : 137.843597
+Process 9 finished.
+Process 17 launch.
+[Matrix Multiply Using CUDA] - Starting...
+GPU Device 0: "Tesla K20c" with compute capability 3.5
+
+MatrixA(10240,10240), MatrixB(20480,10240)
+Computing result using CUDA Kernel...
+done
+Checking computed result for correctness: Result = PASS
+
+Note: For peak performance, please refer to the matrixMulCUBLAS example.
+My RESULT : 137.248138
+Process 10 finished.
+Process 18 launch.
+cudaHostAlloc : 0
+cudaHostAlloc : 0
+This Sample Application Uses 858[Mbyte] per vector.(Total : 1716[Mbyte])
+Performance= 242.96 GFlop/s, Time= 88389.969 msec, Size= 4294967296000 Ops, WorkgroupSize= 1024 threads/block
+Checking computed result for correctness: Result = PASS
+
+Note: For peak performance, please refer to the matrixMulCUBLAS example.
+My RESULT : 135.732147
+Process 11 finished.
+Process 19 launch.
+
++----------------------------------------------------------+
+|> BACKUP START                                            |
++==========================================================+
+|  start events update.                                    |
+|  Finish ...                                              |
++----------------------------------------------------------+
+|  backup for Device start.                                |
+|  Finish ...                                              |
++----------------------------------------------------------+
+|  Finish ...                                              |
++----------------------------------------------------------+
+cudaHostAlloc : 0
+cudaHostAlloc : 0
+This Sample Application Uses 858[Mbyte] per vector.(Total : 1716[Mbyte])
+>Result TEST : PASS
+Application Closed...
+My RESULT : 154.759140
+Process 12 finished.
+Process 20 launch.
+Second Step End...
+[Matrix Multiply Using CUDA] - Starting...
+GPU Device 0: "Tesla K20c" with compute capability 3.5
+
+MatrixA(10240,10240), MatrixB(20480,10240)
+
++----------------------------------------------------------+
+|> BACKUP START                                            |
++==========================================================+
+|  start events update.                                    |
+|  Finish ...                                              |
++----------------------------------------------------------+
+|  backup for Device start.                                |
+|  Finish ...                                              |
++----------------------------------------------------------+
+|  Finish ...                                              |
++----------------------------------------------------------+
+
++----------------------------------------------------------+
+|> BACKUP START                                            |
++==========================================================+
+|  start events update.                                    |
+|  Finish ...                                              |
++----------------------------------------------------------+
+|  backup for Device start.                                |
+|  [MOCU -- BACKUP] allocate     409600 KB.                |
+|  Finish ...                                              |
++----------------------------------------------------------+
+|  Finish ...                                              |
++----------------------------------------------------------+
+Computing result using CUDA Kernel...
+done
+Performance= 239.93 GFlop/s, Time= 89504.938 msec, Size= 4294967296000 Ops, WorkgroupSize= 1024 threads/block
+Performance= 129.10 GFlop/s, Time= 166336.641 msec, Size= 4294967296000 Ops, WorkgroupSize= 1024 threads/block
+Checking computed result for correctness: Result = PASS
+
+Note: For peak performance, please refer to the matrixMulCUBLAS example.
+My RESULT : 215.188690
+Process 13 finished.
+pid == 12404 finish ... 
+Performance= 139.76 GFlop/s, Time= 153653.891 msec, Size= 4294967296000 Ops, WorkgroupSize= 1024 threads/block
+Checking computed result for correctness: Result = PASS
+
+Note: For peak performance, please refer to the matrixMulCUBLAS example.
+My RESULT : 123.597481
+Process 14 finished.
+pid == 12456 finish ... 
+Checking computed result for correctness: Result = PASS
+
+Note: For peak performance, please refer to the matrixMulCUBLAS example.
+My RESULT : 204.252914
+Process 15 finished.
+pid == 12419 finish ... 
+Performance= 129.03 GFlop/s, Time= 166431.906 msec, Size= 4294967296000 Ops, WorkgroupSize= 1024 threads/block
+>Result TEST : PASS
+Application Closed...
+My RESULT : 137.150894
+Process 16 finished.
+pid == 12459 finish ... 
+Checking computed result for correctness: Result = PASS
+
+Note: For peak performance, please refer to the matrixMulCUBLAS example.
+My RESULT : 199.577576
+Process 17 finished.
+pid == 12424 finish ... 
+Performance= 146.51 GFlop/s, Time= 146573.453 msec, Size= 4294967296000 Ops, WorkgroupSize= 1024 threads/block
+Checking computed result for correctness: Result = PASS
+
+Note: For peak performance, please refer to the matrixMulCUBLAS example.
+My RESULT : 198.273590
+Process 18 finished.
+pid == 12428 finish ... 
+>Result TEST : PASS
+Application Closed...
+My RESULT : 154.352875
+Process 19 finished.
+pid == 12462 finish ... 
+Performance= 245.62 GFlop/s, Time= 87431.086 msec, Size= 4294967296000 Ops, WorkgroupSize= 1024 threads/block
+Checking computed result for correctness: Result = PASS
+
+Note: For peak performance, please refer to the matrixMulCUBLAS example.
+My RESULT : 134.246170
+Process 20 finished.
+pid == 12474 finish ... 
+Every processes completed!
+Result time : 472.000000[sec]
+PID == 12335
+Start : 0
+End   : 138
+Time  : 138
+PID == 12339
+Start : 8
+End   : 143
+Time  : 135
+PID == 12349
+Start : 16
+End   : 220
+Time  : 204
+PID == 12353
+Start : 24
+End   : 230
+Time  : 206
+PID == 12357
+Start : 32
+End   : 165
+Time  : 133
+PID == 12361
+Start : 40
+End   : 181
+Time  : 141
+PID == 12365
+Start : 48
+End   : 198
+Time  : 150
+PID == 12369
+Start : 56
+End   : 182
+Time  : 126
+PID == 12391
+Start : 138
+End   : 277
+Time  : 139
+PID == 12394
+Start : 143
+End   : 281
+Time  : 138
+PID == 12399
+Start : 165
+End   : 301
+Time  : 136
+PID == 12404
+Start : 181
+End   : 396
+Time  : 215
+PID == 12405
+Start : 182
+End   : 338
+Time  : 156
+PID == 12419
+Start : 198
+End   : 403
+Time  : 205
+PID == 12424
+Start : 220
+End   : 420
+Time  : 200
+PID == 12428
+Start : 230
+End   : 429
+Time  : 199
+PID == 12456
+Start : 277
+End   : 401
+Time  : 124
+PID == 12459
+Start : 281
+End   : 418
+Time  : 137
+PID == 12462
+Start : 301
+End   : 456
+Time  : 155
+PID == 12474
+Start : 338
+End   : 472
+Time  : 134

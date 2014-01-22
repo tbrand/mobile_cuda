@@ -3,7 +3,7 @@
    Simple Adding Vector Application.
 
    Authoer @ Taichirou Suzuki
- **/
+**/
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -14,7 +14,7 @@
 
 /**
    Simple Kernel.
- **/
+**/
 __global__ void ___add(float* a,float* b,unsigned long size){
   int _x = blockDim.x * blockIdx.x + threadIdx.x;
   int _y = blockDim.y * blockIdx.y + threadIdx.y;
@@ -25,9 +25,9 @@ __global__ void ___add(float* a,float* b,unsigned long size){
 }
 
 static float elapsed(struct timeval tv0,struct timeval tv1){
-	return (float)(tv1.tv_sec - tv0.tv_sec)
-		+ (float)(tv1.tv_usec - tv0.tv_usec)
-		* 0.000001f;
+  return (float)(tv1.tv_sec - tv0.tv_sec)
+    + (float)(tv1.tv_usec - tv0.tv_usec)
+    * 0.000001f;
 }
 
 int main(void){
@@ -38,13 +38,15 @@ int main(void){
   
   /**
      Define Vector Size.
-   **/
+  **/
   //  unsigned long _hen = 11000;
-  unsigned long _hen = 18000;
+  unsigned long _hen = 15000;
+  //  unsigned long _hen = 18000;
   unsigned long size = _hen * _hen;
+  printf("gyouretu size : %lu\n",size);
   /**
      Number Of Launch Kernel.
-   **/
+  **/
   int numOfLaunchKernel = 1;
   //int numOfLaunchKernel = 1;
 
@@ -78,8 +80,8 @@ int main(void){
     h_b[i] = 1.0f;
   }
 
-  int ite = 140;
-  //  int ite = 250;
+  //  int ite = 140;
+  int ite = 250;
   //  int ite = 1000000;
 
   for(int j = 0 ; j < ite ; j ++){
@@ -87,21 +89,21 @@ int main(void){
     cudaMemcpy(d_a,h_a,sizeof(float)*size,cudaMemcpyHostToDevice);
     cudaMemcpy(d_b,h_b,sizeof(float)*size,cudaMemcpyHostToDevice);
 
-  int _size = 10;
-  dim3 threads(_size,_size,1);
-  dim3 grid(_hen/_size,_hen/_size,1);
+    int _size = 10;
+    dim3 threads(_size,_size,1);
+    dim3 grid(_hen/_size,_hen/_size,1);
 
-  for(int i = 0 ; i < numOfLaunchKernel ; i ++){
-    //__add<<<grid,threads>>>(d_c,d_a,d_b,_hen);
-    ___add<<<grid,threads>>>(d_a,d_b,_hen);
-    /**
-       Main thread can sleep at here.
-    **/
-    //    sleep(1);
-  }
+    for(int i = 0 ; i < numOfLaunchKernel ; i ++){
+      //__add<<<grid,threads>>>(d_c,d_a,d_b,_hen);
+      ___add<<<grid,threads>>>(d_a,d_b,_hen);
+      /**
+	 Main thread can sleep at here.
+      **/
+      //    sleep(1);
+    }
 
-  //  cudaMemcpy(h_c,d_c,sizeof(float)*size,cudaMemcpyDeviceToHost);
-  cudaMemcpy(h_a,d_a,sizeof(float)*size,cudaMemcpyDeviceToHost);
+    //  cudaMemcpy(h_c,d_c,sizeof(float)*size,cudaMemcpyDeviceToHost);
+    cudaMemcpy(h_a,d_a,sizeof(float)*size,cudaMemcpyDeviceToHost);
 
   }
 

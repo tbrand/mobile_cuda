@@ -5,11 +5,11 @@
 #include <sys/time.h>
 #include <nvml.h>
 
-#define PROC_NUM 10
+#define PROC_NUM 20
 #define DEV_NUM 4
 #define PATH_TO_PROG   "../../app/0_Simple/matrixMul/matrixMul"
-//#define PATH_TO_PROG2  "../../app/orig/sample"
-#define PATH_TO_PROG2 "../../app/1_Utilities/bandwidthTest/bandwidthTest"
+#define PATH_TO_PROG2  "../../app/orig/memoryBound"
+//#define PATH_TO_PROG2 "../../app/1_Utilities/bandwidthTest/bandwidthTest"
 
 #define MATRIX_MEMORY    2123//[MB]
 
@@ -19,6 +19,7 @@ nvmlDevice_t dev[DEV_NUM];
 nvmlMemory_t mem;
 
 typedef struct my_pid_time{
+  int proc;
   pid_t my_pid;
   struct timeval start;
   struct timeval end;
@@ -129,6 +130,8 @@ int main(){
 
   for(k = 0 ; k < PROC_NUM ; k ++){
     printf("PID == %lld\n",DATA[k].my_pid);
+    printf("pos : %d\n",k);
+    printf("Proc : %d\n",DATA[k].proc);
     printf("Start : %d(%d)\n",DATA[k].start.tv_sec,(DATA[k].start.tv_sec*4)/5);
     printf("End   : %d\n",DATA[k].end.tv_sec);
     printf("Time  : %d(%d)\n",DATA[k].end.tv_sec - DATA[k].start.tv_sec,((DATA[k].end.tv_sec - DATA[k].start.tv_sec)*4)/5);
@@ -164,7 +167,6 @@ void fork_child_proc(){
     if(random < 50)
       execl(PATH_TO_PROG,NULL);
     else
-      //      execl(PATH_TO_PROG2,NULL);
       execl(PATH_TO_PROG2,NULL);
     exit(0);
   }else{
@@ -175,6 +177,11 @@ void fork_child_proc(){
       if(DATA[i].my_pid == 0){
 	DATA[i].my_pid = child;
 	DATA[i].start = start;
+	if(random < 50){
+	  DATA[i].proc = 0;
+	}else{
+	  DATA[i].proc = 1;
+	}
 	i = PROC_NUM;
       }
     }

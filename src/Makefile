@@ -1,6 +1,6 @@
 
 CC     = gcc
-CFLAGS = -g -O2 -I../include
+CFLAGS = -g -O2 -I../include -I/usr/local/cuda/include
 LIB    = -lnvidia-ml
 
 OBJS = libcuda.o

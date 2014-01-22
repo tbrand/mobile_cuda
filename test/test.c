@@ -5,7 +5,7 @@
 #include <sys/time.h>
 
 #define PATH_TO_PROG  "../app/0_Simple/matrixMul/matrixMul"
-#define PATH_TO_PROG2 "../app/orig/sample"
+#define PATH_TO_PROG2 "../app/orig/memoryBound"
 #define PROC_NUM 20
 #define DEV_NUM 4
 
@@ -18,6 +18,7 @@ typedef struct my_pid_time{
   struct timeval start;
   struct timeval end;
   int pos;
+  int proc;
 } __pid;
 
 void fork_orig_proc(int);
@@ -87,9 +88,10 @@ int main(){
   for(k = 0 ; k < PROC_NUM ; k ++){
     printf("PID == %lld\n",DATA[k].my_pid);
     printf("pos   : %d\n",DATA[k].pos);
-    printf("Start : %d\n",DATA[k].start.tv_sec);
+    printf("proc  : %d\n",DATA[k].proc);
+    printf("Start : %d(%d)\n",DATA[k].start.tv_sec,(DATA[k].start.tv_sec*4)/5);
     printf("End   : %d\n",DATA[k].end.tv_sec);
-    printf("Time  : %d\n",DATA[k].end.tv_sec - DATA[k].start.tv_sec);
+    printf("Time  : %d(%d)\n",DATA[k].end.tv_sec - DATA[k].start.tv_sec,((DATA[k].end.tv_sec - DATA[k].start.tv_sec)*4)/5);
   }
 
   return 0;
@@ -120,7 +122,7 @@ void fork_orig_proc(int pos){
     if(random < 50)
       execl(PATH_TO_PROG,NULL);//execute matrixMul.cu
     else
-      execl(PATH_TO_PROG2,NULL);//execute matrixMul.cu
+      execl(PATH_TO_PROG2,NULL);
 
     exit(-1);
   }else{
@@ -129,6 +131,11 @@ void fork_orig_proc(int pos){
     int i;
     for(i = 0 ; i < PROC_NUM ; i ++){
       if(DATA[i].my_pid == 0){
+	if(random < 50){
+	  DATA[i].proc = 0;
+	}else{
+	  DATA[i].proc = 1;
+	}
 	DATA[i].my_pid = pids[pos];
 	DATA[i].start = start;
 	DATA[i].pos = pos;

@@ -149,6 +149,10 @@ int matrixMultiply(int argc, char **argv, int block_size, dim3 &dimsA, dim3 &dim
     unsigned int mem_size_C = dimsC.x * dimsC.y * sizeof(float);
     float *h_C = (float *) malloc(mem_size_C);
 
+    printf("size A : %lu\n",sizeof(float)*size_A >> 20);
+    printf("size B : %lu\n",sizeof(float)*size_B >> 20);
+    printf("size C : %u\n",sizeof(mem_size_C));
+
     if (h_C == NULL)
     {
         fprintf(stderr, "Failed to allocate host matrix C!\n");

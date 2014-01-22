@@ -46,10 +46,10 @@
 
 #define DEBUG         1
 #define DEBUG_ERROR   0
-#define PRINT_LOG     0
-#define DEBUG_RESTORE 0
-#define DEBUG_MIG 0
-#define DEBUG_BACKUP 0
+#define PRINT_LOG     1
+#define DEBUG_RESTORE 1
+#define DEBUG_MIG 1
+#define DEBUG_BACKUP 1
 
 #define DEBUG_SEMAPHORE 0
 
@@ -248,7 +248,7 @@ CUresult (*mocuGraphicsUnmapResources)(unsigned int ,CUgraphicsResource *,CUstre
 CUresult (*mocuGetExportTable)(const void **,const CUuuid *);
 CUresult (*mocuTexRefSetAddress2D_v2)(CUtexref ,const CUDA_ARRAY_DESCRIPTOR *,CUdeviceptr ,size_t );
 
-#if 1
+#if 0
 CUresult (*mocuLinkCreate)(unsigned int, CUjit_option *, void **, CUlinkState *);
 CUresult (*mocuLinkAddData)(CUlinkState , CUjitInputType , void *, size_t, const char *, unsigned int, CUjit_option *, void **);
 CUresult (*mocuLinkAddFile)(CUlinkState , CUjitInputType , const char *, unsigned int , CUjit_option *, void **);
@@ -308,6 +308,7 @@ int _actual_num_of_proc_at_device0(){
 }
 
 int _get_optimum_device_pos(){
+#if MODE
   int pos = 0;
   int procs = _actual_num_of_proc_at_device0();
   int i;
@@ -319,6 +320,9 @@ int _get_optimum_device_pos(){
     }
   }
   return pos;
+#else
+  return 0;
+#endif
 }
 
 int _is_optimum_pos(int pos){
@@ -5570,7 +5574,7 @@ CUresult cuGetExportTable(const void **ppExportTable,const CUuuid *pExportTableI
   return res;
 }
 
-#if 1
+#if 0
 
 CUresult cuLinkCreate(unsigned int numOptions, CUjit_option *options, void **optionValues, CUlinkState *stateOut){
 #if DEBUG
@@ -6221,7 +6225,7 @@ void mocu_stream_restore(context* cp){
   while (sp->mode >= 0) {
     res = mocuStreamCreate(&sp->s, sp->flags);
     if (res != CUDA_SUCCESS) {
-      printf("Failed to re create event.\n");
+      printf("Failed to recreate stream.\n");
       exit(0);
     }
     sp = sp->next;
@@ -6240,6 +6244,9 @@ static float elapsed(int i, int j){
 }
 
 void mocu_backup(){
+#if PRINT_LOG
+  print_all_log();
+#endif
 #if DEBUG_BACKUP
   printf("\n");
   printf("+----------------------------------------------------------+\n");
@@ -6327,7 +6334,7 @@ void mocu_migrate(int devID){
   printf("| Time Result                                              |\n");
   printf("| Backup phase    : %10f[sec].                       |\n",elapsed(0,1));
   printf("| Migration phase : %10f[sec].                       |\n",elapsed(1,2));
-  printf("| Migrate done.                                            |\n");
+  printf("| Done.                                                    |\n");
   printf("+----------------------------------------------------------+\n");
 #endif
 }
