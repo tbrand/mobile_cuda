@@ -4,9 +4,8 @@ Author : Taichirou Suzuki @ Titech
 
 https://github.com/tbrand/mobile_cuda.git
 
-* Simple GPGPU Program Scheduler.
 * Migrate processes betweeen GPUs.
-* Mobile CUDA has 2 modes as triggers of migration.
+* Mobile CUDA has 2 modes as a trigger of migration.
 * See top of the libcuda.c to check the description of each 2 modes.
 
 * To utilize this project:
@@ -30,7 +29,7 @@ Do NOT call cudaSetDevice() in your program, there is some possibility of failin
 
 This project depends on CUDA driver version, see Makefile @src.
 This project using original libcuda.so (usually locate at /usr/lib64/libcuda.so) in libcuda.c, if you locate it another path, fix it before make it.
-The script 'env.sh' depends on your environmental.
+The script 'env.sh' depends on your environment.
 
 Mobile CUDA is NOT complete project, it contains many bugs.
 And some program (using CUDA) will be failed to migrate.
