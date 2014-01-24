@@ -4,6 +4,7 @@
 #include <sys/wait.h>
 #include <sys/time.h>
 #include <nvml.h>
+#include <time.h>
 
 #define PROC_NUM 20
 #define DEV_NUM 4
@@ -17,6 +18,11 @@ int status;
 
 nvmlDevice_t dev[DEV_NUM];
 nvmlMemory_t mem;
+time_t tt;
+struct tm *ts,*te;
+
+int proc1 = 0;
+int proc2 = 0;
 
 typedef struct my_pid_time{
   int proc;
@@ -35,11 +41,25 @@ __pid DATA[PROC_NUM];
 
 static float elapsed(struct timeval tv0,struct timeval tv1){
   return (float)(tv1.tv_sec - tv0.tv_sec);
-    //    + (float)(tv1.tv_usec - tv0.tv_usec)
-    //    * 0.000001f;
+  //    + (float)(tv1.tv_usec - tv0.tv_usec)
+  //    * 0.000001f;
+}
+
+void time_stamp(){
+  printf("--------------\n");
+  tt = time(NULL);
+  ts = localtime(&tt);
+  printf("%02d:%02d:%02d\n", ts->tm_hour, ts->tm_min, ts->tm_sec);
+  printf("matrixMul to %d\n",proc1);
+  printf("memcpy    to %d\n",proc2);
+  printf("--------------\n");
 }
 
 int main(){
+
+  tt = time(NULL);
+  ts = localtime(&tt);
+  printf("%02d:%02d:%02d\n", ts->tm_hour, ts->tm_min, ts->tm_sec);
 
   srand(110);
 
@@ -78,6 +98,12 @@ int main(){
     for(j = 0 ; j < PROC_NUM ; j ++){
       if(DATA[j].my_pid == res){
 	DATA[j].end = end;
+	if(DATA[j].proc == 0){
+	  proc1--;
+	}else{
+	  proc2--;
+	}
+	time_stamp();
       }
     }
     
@@ -107,6 +133,12 @@ int main(){
     for(j = 0 ; j < PROC_NUM ; j ++){
       if(DATA[j].my_pid == res){
 	DATA[j].end = end;
+	if(DATA[j].proc == 0){
+	  proc1--;
+	}else{
+	  proc2--;
+	}
+	time_stamp();
       }
     }
     printf("Process %d finished.\n",received_proc);
@@ -118,6 +150,10 @@ int main(){
   gettimeofday(&tv1,NULL);
 
   printf("Result time : %f[sec]\n",elapsed(tv0,tv1));
+
+  tt = time(NULL);
+  te = localtime(&tt);
+  printf("%02d:%02d:%02d\n", te->tm_hour, te->tm_min, te->tm_sec);
 
   int k;
 
@@ -179,9 +215,12 @@ void fork_child_proc(){
 	DATA[i].start = start;
 	if(random < 50){
 	  DATA[i].proc = 0;
+	  proc1++;
 	}else{
 	  DATA[i].proc = 1;
+	  proc2++;
 	}
+	time_stamp();
 	i = PROC_NUM;
       }
     }

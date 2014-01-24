@@ -44,12 +44,12 @@
 //for nvml
 #include <nvml.h>
 
-#define DEBUG         1
+#define DEBUG         0
 #define DEBUG_ERROR   0
-#define PRINT_LOG     1
-#define DEBUG_RESTORE 1
-#define DEBUG_MIG 1
-#define DEBUG_BACKUP 1
+#define PRINT_LOG     0
+#define DEBUG_RESTORE 0
+#define DEBUG_MIG 0
+#define DEBUG_BACKUP 0
 
 #define DEBUG_SEMAPHORE 0
 

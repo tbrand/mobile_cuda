@@ -3,6 +3,7 @@
 #include <unistd.h>
 #include <sys/wait.h>
 #include <sys/time.h>
+#include <time.h>
 
 #define PATH_TO_PROG  "../app/0_Simple/matrixMul/matrixMul"
 #define PATH_TO_PROG2 "../app/orig/memoryBound"
@@ -12,6 +13,9 @@
 pid_t pids[DEV_NUM];
 int status;
 int proc_counter;
+
+time_t tt;
+struct tm *ts,*te;
 
 typedef struct my_pid_time{
   pid_t my_pid;
@@ -27,12 +31,16 @@ pid_t wait_proc();
 __pid DATA[PROC_NUM];
 
 static float elapsed(struct timeval tv0,struct timeval tv1){
-	return (float)(tv1.tv_sec - tv0.tv_sec)
-		+ (float)(tv1.tv_usec - tv0.tv_usec)
-		* 0.000001f;
+  return (float)(tv1.tv_sec - tv0.tv_sec)
+    + (float)(tv1.tv_usec - tv0.tv_usec)
+    * 0.000001f;
 }
 
 int main(){
+
+  tt = time(NULL);
+  ts = localtime(&tt);
+  printf("%02d:%02d:%02d\n", ts->tm_hour, ts->tm_min, ts->tm_sec);
 
   srand(110);
 
@@ -75,6 +83,10 @@ int main(){
   gettimeofday(&tv1,NULL);
 
   printf("Result time : %f[sec]\n",elapsed(tv0,tv1));
+
+  tt = time(NULL);
+  te = localtime(&tt);
+  printf("%02d:%02d:%02d\n", te->tm_hour, te->tm_min, te->tm_sec);
 
   int k;
 
